@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,16 +18,16 @@
             --accent-teal: #2C7873;
             --accent-grey: #D4D4D4;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
         }
-        
+
         html {
             scroll-behavior: smooth;
         }
-        
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: var(--dark-text);
@@ -38,15 +39,15 @@
             background-size: 150%;
             position: relative;
         }
-        
+
         /* Navbar - Premium Design */
         .navbar {
             background: linear-gradient(135deg, var(--dark-brown) 0%, var(--brown) 50%, var(--gold) 100%);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
             padding: 14px 0;
             backdrop-filter: blur(10px);
         }
-        
+
         .navbar-brand {
             font-weight: 800;
             font-size: 1.35rem;
@@ -57,16 +58,16 @@
             align-items: center;
             gap: 8px;
         }
-        
+
         .navbar-brand i {
             font-size: 1.5rem;
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
             padding: 6px 10px;
             border-radius: 6px;
         }
-        
+
         .nav-link {
-            color: rgba(255,255,255,0.9) !important;
+            color: rgba(255, 255, 255, 0.9) !important;
             margin: 0 10px;
             font-weight: 600;
             font-size: 0.95rem;
@@ -76,11 +77,11 @@
             letter-spacing: 0.3px;
             padding: 8px 0 !important;
         }
-        
+
         .nav-link:hover {
             color: var(--gold) !important;
         }
-        
+
         .nav-link::after {
             content: '';
             position: absolute;
@@ -91,11 +92,11 @@
             background: linear-gradient(90deg, var(--gold), transparent);
             transition: width 0.3s ease;
         }
-        
+
         .nav-link:hover::after {
             width: 100%;
         }
-        
+
         .btn-auth {
             background: var(--gold);
             color: var(--dark-brown);
@@ -111,14 +112,14 @@
             text-transform: uppercase;
             letter-spacing: 0.3px;
         }
-        
+
         .btn-auth:hover {
             background: var(--white);
             color: var(--dark-brown);
             transform: translateY(-2px);
             box-shadow: 0 6px 15px rgba(245, 186, 44, 0.4);
         }
-        
+
         /* Hero Section - Stunning Design */
         .hero {
             background: linear-gradient(135deg, var(--dark-brown) 0%, var(--brown) 35%, var(--gold) 100%);
@@ -133,7 +134,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .hero::before {
             content: '';
             position: absolute;
@@ -144,32 +145,33 @@
             background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></svg>');
             opacity: 0.1;
         }
-        
+
         .hero-content {
             position: relative;
             z-index: 2;
             animation: fadeInUp 0.8s ease;
         }
-        
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        
+
         .hero h1 {
             font-size: 2.8rem;
             font-weight: 800;
             margin-bottom: 15px;
             letter-spacing: -0.5px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
-        
+
         .hero p {
             font-size: 1.15rem;
             margin-bottom: 30px;
@@ -177,7 +179,7 @@
             font-weight: 500;
             letter-spacing: 0.3px;
         }
-        
+
         .hero .btn {
             padding: 12px 28px;
             font-size: 1rem;
@@ -188,41 +190,41 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        
+
         .btn-hero-primary {
             background-color: var(--gold);
             border: none;
             color: var(--dark-brown);
             box-shadow: 0 6px 20px rgba(245, 186, 44, 0.4);
         }
-        
+
         .btn-hero-primary:hover {
             background-color: var(--white);
             color: var(--dark-brown);
             transform: translateY(-3px);
             box-shadow: 0 10px 30px rgba(245, 186, 44, 0.5);
         }
-        
+
         .btn-hero-secondary {
             background-color: transparent;
             border: 2.5px solid var(--gold);
             color: var(--gold);
         }
-        
+
         .btn-hero-secondary:hover {
             background-color: var(--gold);
             color: var(--dark-brown);
             transform: translateY(-3px);
             box-shadow: 0 10px 30px rgba(245, 186, 44, 0.4);
         }
-        
+
         /* Sections */
         .section {
             padding: 60px 0;
             position: relative;
             z-index: 1;
         }
-        
+
         .section-title {
             font-size: 2.2rem;
             font-weight: 800;
@@ -233,7 +235,7 @@
             padding-bottom: 20px;
             letter-spacing: -0.5px;
         }
-        
+
         .section-title::after {
             content: '';
             position: absolute;
@@ -245,25 +247,25 @@
             bottom: 0;
             border-radius: 2px;
         }
-        
+
         /* Principal Message */
         .principal-section {
             background: linear-gradient(180deg, var(--light-cream) 0%, rgba(245, 186, 44, 0.08) 100%);
             position: relative;
         }
-        
+
         .principal-card {
             background: var(--white);
             padding: 40px;
             border-radius: 12px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
             text-align: center;
             border-top: 5px solid var(--gold);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
-        
+
         .principal-card::before {
             content: '';
             position: absolute;
@@ -273,12 +275,12 @@
             height: 3px;
             background: linear-gradient(90deg, var(--gold), var(--brown), var(--accent-teal));
         }
-        
+
         .principal-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
         }
-        
+
         .principal-image {
             width: 110px;
             height: 110px;
@@ -293,7 +295,7 @@
             box-shadow: 0 6px 20px rgba(151, 132, 82, 0.3);
             border: 3px solid var(--gold);
         }
-        
+
         .principal-card h3 {
             color: var(--dark-brown);
             font-weight: 800;
@@ -301,7 +303,7 @@
             margin-bottom: 5px;
             letter-spacing: -0.3px;
         }
-        
+
         .principal-card .position {
             color: var(--gold);
             font-size: 0.95rem;
@@ -310,31 +312,31 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        
+
         .principal-card p {
             color: #555;
             font-size: 0.98rem;
             line-height: 1.8;
             font-style: italic;
         }
-        
+
         /* Vision & Goals */
         .vision-goals {
             background: var(--white);
         }
-        
+
         .card-item {
             background: linear-gradient(135deg, var(--white) 0%, rgba(245, 186, 44, 0.05) 100%);
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
             margin-bottom: 25px;
             transition: all 0.3s ease;
             border-left: 5px solid var(--gold);
             position: relative;
             overflow: hidden;
         }
-        
+
         .card-item::before {
             content: '';
             position: absolute;
@@ -346,30 +348,30 @@
             border-radius: 50%;
             transition: all 0.3s ease;
         }
-        
+
         .card-item:hover {
             transform: translateY(-8px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
             border-left-color: var(--accent-teal);
         }
-        
+
         .card-item:hover::before {
             top: -30%;
             right: -30%;
         }
-        
+
         .card-item i {
             font-size: 2.2rem;
             color: var(--gold);
             margin-bottom: 15px;
             transition: all 0.3s ease;
         }
-        
+
         .card-item:hover i {
             color: var(--accent-teal);
             transform: scale(1.1);
         }
-        
+
         .card-item h4 {
             color: var(--dark-brown);
             font-weight: 800;
@@ -377,7 +379,7 @@
             margin-bottom: 12px;
             letter-spacing: -0.3px;
         }
-        
+
         .card-item p {
             color: #666;
             font-size: 0.97rem;
@@ -385,28 +387,28 @@
             position: relative;
             z-index: 1;
         }
-        
+
         /* People Section */
         .people-section {
             background: linear-gradient(180deg, var(--light-cream) 0%, rgba(245, 186, 44, 0.05) 100%);
         }
-        
+
         .person-card {
             background: var(--white);
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
             text-align: center;
             border: 2px solid transparent;
         }
-        
+
         .person-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
             border-color: var(--gold);
         }
-        
+
         .person-image {
             width: 100%;
             height: 150px;
@@ -419,24 +421,24 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .person-image::after {
             content: '';
             position: absolute;
             width: 100%;
             height: 100%;
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
         }
-        
+
         .person-card:hover .person-image::after {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
         }
-        
+
         .person-info {
             padding: 18px;
         }
-        
+
         .person-info h5 {
             color: var(--dark-brown);
             font-weight: 800;
@@ -444,7 +446,7 @@
             margin-bottom: 5px;
             letter-spacing: -0.2px;
         }
-        
+
         .person-info p {
             color: var(--gold);
             font-size: 0.88rem;
@@ -453,28 +455,28 @@
             text-transform: uppercase;
             letter-spacing: 0.3px;
         }
-        
+
         /* Courses Section */
         .courses-section {
             background: var(--white);
         }
-        
+
         .course-card {
             background: var(--white);
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
             margin-bottom: 25px;
             border: 2px solid transparent;
         }
-        
+
         .course-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
             border-color: var(--gold);
         }
-        
+
         .course-image {
             width: 100%;
             height: 160px;
@@ -487,11 +489,11 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .course-info {
             padding: 20px;
         }
-        
+
         .course-info h5 {
             color: var(--dark-brown);
             font-weight: 800;
@@ -499,13 +501,13 @@
             margin-bottom: 10px;
             letter-spacing: -0.2px;
         }
-        
+
         .course-info p {
             color: #666;
             font-size: 0.9rem;
             margin-bottom: 15px;
         }
-        
+
         .course-meta {
             display: flex;
             justify-content: space-between;
@@ -513,22 +515,22 @@
             color: var(--brown);
             font-weight: 600;
         }
-        
+
         /* Gallery Section */
         .gallery-section {
             background: linear-gradient(180deg, var(--light-cream) 0%, rgba(245, 186, 44, 0.05) 100%);
         }
-        
+
         .gallery-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 20px;
         }
-        
+
         .gallery-item {
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
             height: 200px;
             background: linear-gradient(135deg, var(--brown) 0%, var(--gold) 100%);
@@ -539,69 +541,69 @@
             font-size: 3rem;
             cursor: pointer;
         }
-        
+
         .gallery-item:hover {
             transform: scale(1.05);
-            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
         }
-        
+
         /* Contact Section */
         .contact-section {
             background: var(--white);
         }
-        
+
         .contact-card {
             background: var(--white);
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
             border-top: 5px solid var(--gold);
             transition: all 0.3s ease;
         }
-        
+
         .contact-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
         }
-        
+
         .contact-info {
             margin-bottom: 20px;
         }
-        
+
         .contact-info i {
             color: var(--gold);
             font-size: 1.2rem;
             margin-right: 10px;
             width: 20px;
         }
-        
+
         /* Vacancy Section */
         .vacancy-section {
             background: linear-gradient(180deg, var(--light-cream) 0%, rgba(245, 186, 44, 0.05) 100%);
         }
-        
+
         .vacancy-card {
             background: var(--white);
             padding: 25px;
             border-radius: 12px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
             margin-bottom: 20px;
             transition: all 0.3s ease;
             border-left: 5px solid var(--gold);
         }
-        
+
         .vacancy-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
         }
-        
+
         .vacancy-card h5 {
             color: var(--dark-brown);
             font-weight: 800;
             font-size: 1.1rem;
             margin-bottom: 10px;
         }
-        
+
         .vacancy-meta {
             display: flex;
             gap: 15px;
@@ -610,7 +612,7 @@
             color: var(--brown);
             font-weight: 600;
         }
-        
+
         /* Footer */
         .footer {
             background: linear-gradient(135deg, var(--dark-brown) 0%, var(--brown) 50%, rgba(245, 186, 44, 0.9) 100%);
@@ -618,9 +620,9 @@
             padding: 35px 0 15px;
             margin-top: 50px;
             font-size: 0.95rem;
-            box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
         }
-        
+
         .footer h5 {
             font-weight: 800;
             margin-bottom: 15px;
@@ -628,42 +630,42 @@
             text-transform: uppercase;
             letter-spacing: 0.3px;
         }
-        
+
         .footer p {
             font-size: 0.92rem;
             margin-bottom: 8px;
             opacity: 0.95;
         }
-        
+
         .footer a {
-            color: rgba(255,255,255,0.85);
+            color: rgba(255, 255, 255, 0.85);
             text-decoration: none;
             transition: all 0.3s ease;
             font-size: 0.92rem;
         }
-        
+
         .footer a:hover {
             color: var(--white);
             text-decoration: underline;
         }
-        
+
         .footer-bottom {
             text-align: center;
             padding-top: 15px;
-            border-top: 1px solid rgba(255,255,255,0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
             margin-top: 20px;
             font-size: 0.88rem;
             opacity: 0.9;
         }
-        
+
         /* Modal Styling */
         .modal-content {
             border: none;
             border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
             overflow: hidden;
         }
-        
+
         .modal-header {
             background: linear-gradient(135deg, var(--dark-brown) 0%, var(--brown) 50%, var(--gold) 100%);
             color: var(--white);
@@ -672,7 +674,7 @@
             font-weight: 800;
             letter-spacing: 0.5px;
         }
-        
+
         .form-label {
             font-weight: 700;
             color: var(--dark-brown);
@@ -681,7 +683,7 @@
             text-transform: uppercase;
             letter-spacing: 0.3px;
         }
-        
+
         .form-control {
             font-size: 0.95rem;
             border-radius: 8px;
@@ -689,13 +691,13 @@
             padding: 10px 14px;
             transition: all 0.3s ease;
         }
-        
+
         .form-control:focus {
             border-color: var(--gold);
             box-shadow: 0 0 0 0.2rem rgba(245, 186, 44, 0.25);
             background-color: rgba(245, 186, 44, 0.02);
         }
-        
+
         .btn-submit {
             background: linear-gradient(135deg, var(--gold), var(--brown));
             color: var(--white);
@@ -708,13 +710,13 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 12px rgba(245, 186, 44, 0.3);
         }
-        
+
         .btn-submit:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(245, 186, 44, 0.4);
             color: var(--white);
         }
-        
+
         /* Back to Top Button */
         .back-to-top {
             position: fixed;
@@ -729,499 +731,789 @@
             align-items: center;
             justify-content: center;
             font-size: 1.2rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             cursor: pointer;
             transition: all 0.3s ease;
             z-index: 1000;
             opacity: 0;
             visibility: hidden;
         }
-        
+
         .back-to-top.active {
             opacity: 1;
             visibility: visible;
         }
-        
+
         .back-to-top:hover {
             background: var(--white);
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
         }
 
         /* Responsive CSS for School Management Website */
 
-/* Extra small devices (phones, 576px and down) */
-@media (max-width: 576px) {
-    .hero h1 {
-        font-size: 1.8rem;
-        margin-bottom: 10px;
-    }
-    
-    .hero p {
-        font-size: 1rem;
-        margin-bottom: 20px;
-    }
-    
-    .hero .btn {
-        padding: 10px 20px;
-        font-size: 0.9rem;
-        margin: 5px 0;
-        display: block;
-        width: 100%;
-    }
-    
-    .section {
-        padding: 40px 0;
-    }
-    
-    .section-title {
-        font-size: 1.6rem;
-        margin-bottom: 30px;
-    }
-    
-    .navbar-brand {
-        font-size: 1.1rem;
-        margin-right: 0;
-    }
-    
-    .nav-link {
-        margin: 0 5px;
-        font-size: 0.85rem;
-        text-align: center;
-    }
-    
-    .btn-auth {
-        padding: 6px 12px;
-        font-size: 0.8rem;
-        margin: 5px;
-        width: 100%;
-        text-align: center;
-    }
-    
-    .principal-card {
-        padding: 25px 20px;
-    }
-    
-    .principal-image {
-        width: 90px;
-        height: 90px;
-        font-size: 2.2rem;
-    }
-    
-    .card-item {
-        padding: 20px;
-        margin-bottom: 20px;
-    }
-    
-    .person-card, .course-card {
-        margin-bottom: 20px;
-    }
-    
-    .gallery-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-    }
-    
-    .gallery-item {
-        height: 150px;
-        font-size: 2.5rem;
-    }
-    
-    .contact-card {
-        padding: 20px;
-        margin-bottom: 20px;
-    }
-    
-    .vacancy-card {
-        padding: 20px;
-        margin-bottom: 20px;
-    }
-    
-    .footer {
-        padding: 25px 0 10px;
-    }
-    
-    .footer h5 {
-        font-size: 1rem;
-        margin-top: 15px;
-    }
-    
-    .modal-dialog {
-        margin: 10px;
-    }
-    
-    .back-to-top {
-        bottom: 20px;
-        right: 20px;
-        width: 45px;
-        height: 45px;
-        font-size: 1rem;
-    }
-}
+        /* Extra small devices (phones, 576px and down) */
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+                margin-bottom: 10px;
+            }
 
-/* Small devices (landscape phones, 576px to 768px) */
-@media (min-width: 576px) and (max-width: 768px) {
-    .hero h1 {
-        font-size: 2.2rem;
-    }
-    
-    .hero p {
-        font-size: 1.05rem;
-    }
-    
-    .section-title {
-        font-size: 1.8rem;
-    }
-    
-    .navbar-brand {
-        font-size: 1.2rem;
-    }
-    
-    .gallery-container {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 15px;
-    }
-    
-    .person-card, .course-card {
-        margin-bottom: 20px;
-    }
-    
-    .principal-card {
-        padding: 30px 25px;
-    }
-    
-    .btn-auth {
-        padding: 7px 14px;
-        font-size: 0.85rem;
-    }
-}
+            .hero p {
+                font-size: 1rem;
+                margin-bottom: 20px;
+            }
 
-/* Medium devices (tablets, 768px to 992px) */
-@media (min-width: 768px) and (max-width: 992px) {
-    .hero h1 {
-        font-size: 2.4rem;
-    }
-    
-    .section-title {
-        font-size: 2rem;
-    }
-    
-    .gallery-container {
-        grid-template-columns: repeat(4, 1fr);
-    }
-    
-    .navbar-collapse {
-        background: linear-gradient(135deg, var(--dark-brown) 0%, var(--brown) 50%, var(--gold) 100%);
-        padding: 15px;
-        border-radius: 8px;
-        margin-top: 10px;
-    }
-    
-    .nav-link {
-        text-align: left;
-        padding: 8px 15px !important;
-    }
-    
-    .btn-auth {
-        margin: 10px 0;
-        width: 100%;
-        text-align: center;
-    }
-}
+            .hero .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+                margin: 5px 0;
+                display: block;
+                width: 100%;
+            }
 
-/* Large devices (desktops, 992px to 1200px) */
-@media (min-width: 992px) and (max-width: 1200px) {
-    .container {
-        max-width: 960px;
-    }
-    
-    .hero h1 {
-        font-size: 2.6rem;
-    }
-    
-    .gallery-container {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
+            .section {
+                padding: 40px 0;
+            }
 
-/* Extra large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-    .container {
-        max-width: 1140px;
-    }
-}
+            .section-title {
+                font-size: 1.6rem;
+                margin-bottom: 30px;
+            }
 
-/* Mobile-first responsive adjustments */
-@media (max-width: 768px) {
-    /* Stack columns vertically on mobile */
-    .row {
-        margin-left: -10px;
-        margin-right: -10px;
-    }
-    
-    .col-md-6, .col-md-4, .col-md-3, .col-md-8 {
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-    
-    /* Adjust spacing for mobile */
-    .mb-4 {
-        margin-bottom: 1.5rem !important;
-    }
-    
-    /* Modal adjustments for mobile */
-    .modal-content {
-        margin: 20px 10px;
-    }
-    
-    /* Form adjustments */
-    .form-control {
-        font-size: 16px; /* Prevents zoom on iOS */
-    }
-    
-    /* Navigation adjustments */
-    .navbar-nav {
-        text-align: center;
-    }
-    
-    .nav-item {
-        margin: 5px 0;
-    }
-    
-    /* Card adjustments */
-    .card-item, .person-card, .course-card, .vacancy-card {
-        margin-bottom: 20px;
-    }
-    
-    /* Button group adjustments */
-    .btn-group-vertical {
-        width: 100%;
-    }
-    
-    .btn-group-vertical .btn {
-        margin: 2px 0;
-    }
-}
+            .navbar-brand {
+                font-size: 1.1rem;
+                margin-right: 0;
+            }
 
-/* Tablet-specific adjustments */
-@media (min-width: 768px) and (max-width: 1024px) {
-    .hero {
-        min-height: 400px;
-        padding: 60px 0;
-    }
-    
-    .section {
-        padding: 50px 0;
-    }
-    
-    .gallery-container {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    
-    .person-card, .course-card {
-        margin-bottom: 25px;
-    }
-}
+            .nav-link {
+                margin: 0 5px;
+                font-size: 0.85rem;
+                text-align: center;
+            }
 
-/* Orientation-specific adjustments */
-@media (max-width: 768px) and (orientation: landscape) {
-    .hero {
-        min-height: 300px;
-        padding: 40px 0;
-    }
-    
-    .navbar {
-        padding: 10px 0;
-    }
-    
-    .modal-dialog {
-        max-height: 80vh;
-        overflow-y: auto;
-    }
-}
+            .btn-auth {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+                margin: 5px;
+                width: 100%;
+                text-align: center;
+            }
 
-/* High-resolution displays */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    .hero::before {
-        background-size: 50px 50px;
-    }
-}
+            .principal-card {
+                padding: 25px 20px;
+            }
 
-/* Print styles */
-@media print {
-    .navbar, .footer, .btn, .back-to-top {
-        display: none !important;
-    }
-    
-    .hero {
-        background: white !important;
-        color: black !important;
-        margin-top: 0;
-    }
-    
-    .section {
-        padding: 20px 0;
-        break-inside: avoid;
-    }
-    
-    .card-item, .person-card, .course-card {
-        box-shadow: none !important;
-        border: 1px solid #ddd !important;
-    }
-}
+            .principal-image {
+                width: 90px;
+                height: 90px;
+                font-size: 2.2rem;
+            }
 
-/* Reduced motion for accessibility */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-    
-    html {
-        scroll-behavior: auto;
-    }
-}
+            .card-item {
+                padding: 20px;
+                margin-bottom: 20px;
+            }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --light-cream: #1a1a1a;
-        --white: #2d2d2d;
-        --dark-text: #e0e0e0;
-        --accent-grey: #404040;
-    }
-    
-    body {
-        background-color: #1a1a1a;
-        color: #e0e0e0;
-    }
-    
-    .card-item, .person-card, .course-card, .principal-card, .contact-card, .vacancy-card {
-        background: #2d2d2d;
-        color: #e0e0e0;
-    }
-    
-    .card-item p, .principal-card p, .course-info p {
-        color: #b0b0b0;
-    }
-}
+            .person-card,
+            .course-card {
+                margin-bottom: 20px;
+            }
 
-/* Touch device optimizations */
-@media (hover: none) and (pointer: coarse) {
-    .nav-link::after {
-        display: none;
-    }
-    
-    .card-item:hover, .person-card:hover, .course-card:hover {
-        transform: none;
-    }
-    
-    .btn:hover {
-        transform: none;
-    }
-    
-    /* Increase tap target sizes */
-    .nav-link, .btn, .form-control {
-        min-height: 44px;
-    }
-    
-    .gallery-item {
-        min-height: 44px;
-    }
-}
+            .gallery-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
 
-/* Very small screens (old phones) */
-@media (max-width: 360px) {
-    .hero h1 {
-        font-size: 1.5rem;
-    }
-    
-    .hero p {
-        font-size: 0.9rem;
-    }
-    
-    .section-title {
-        font-size: 1.4rem;
-    }
-    
-    .gallery-container {
-        grid-template-columns: 1fr;
-    }
-    
-    .navbar-brand {
-        font-size: 1rem;
-    }
-    
-    .btn {
-        font-size: 0.8rem;
-        padding: 8px 16px;
-    }
-}
+            .gallery-item {
+                height: 150px;
+                font-size: 2.5rem;
+            }
 
-/* Foldable devices */
-@media (max-width: 280px) {
-    .container {
-        padding-left: 5px;
-        padding-right: 5px;
-    }
-    
-    .hero h1 {
-        font-size: 1.3rem;
-    }
-    
-    .section-title {
-        font-size: 1.2rem;
-    }
-    
-    .gallery-container {
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
-    
-    .gallery-item {
-        height: 120px;
-        font-size: 2rem;
-    }
-}
+            .contact-card {
+                padding: 20px;
+                margin-bottom: 20px;
+            }
 
-/* Height-based media queries */
-@media (max-height: 600px) and (orientation: landscape) {
-    .hero {
-        min-height: 250px;
-        padding: 30px 0;
-    }
-    
-    .modal-dialog {
-        max-height: 90vh;
-        overflow-y: auto;
-    }
-    
-    .navbar {
-        padding: 8px 0;
-    }
-}
+            .vacancy-card {
+                padding: 20px;
+                margin-bottom: 20px;
+            }
 
-/* Ultra-wide screens */
-@media (min-width: 1600px) {
-    .container {
-        max-width: 1500px;
-    }
-    
-    .hero h1 {
-        font-size: 3.5rem;
-    }
-    
-    .section-title {
-        font-size: 2.5rem;
-    }
-    
-    .gallery-container {
-        grid-template-columns: repeat(6, 1fr);
-    }
-}
+            .footer {
+                padding: 25px 0 10px;
+            }
+
+            .footer h5 {
+                font-size: 1rem;
+                margin-top: 15px;
+            }
+
+            .modal-dialog {
+                margin: 10px;
+            }
+
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Small devices (landscape phones, 576px to 768px) */
+        @media (min-width: 576px) and (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.05rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+
+            .gallery-container {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
+            }
+
+            .person-card,
+            .course-card {
+                margin-bottom: 20px;
+            }
+
+            .principal-card {
+                padding: 30px 25px;
+            }
+
+            .btn-auth {
+                padding: 7px 14px;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Medium devices (tablets, 768px to 992px) */
+        @media (min-width: 768px) and (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .gallery-container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .navbar-collapse {
+                background: linear-gradient(135deg, var(--dark-brown) 0%, var(--brown) 50%, var(--gold) 100%);
+                padding: 15px;
+                border-radius: 8px;
+                margin-top: 10px;
+            }
+
+            .nav-link {
+                text-align: left;
+                padding: 8px 15px !important;
+            }
+
+            .btn-auth {
+                margin: 10px 0;
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        /* Large devices (desktops, 992px to 1200px) */
+        @media (min-width: 992px) and (max-width: 1200px) {
+            .container {
+                max-width: 960px;
+            }
+
+            .hero h1 {
+                font-size: 2.6rem;
+            }
+
+            .gallery-container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* Extra large devices (large desktops, 1200px and up) */
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 1140px;
+            }
+        }
+
+        /* Mobile-first responsive adjustments */
+        @media (max-width: 768px) {
+
+            /* Stack columns vertically on mobile */
+            .row {
+                margin-left: -10px;
+                margin-right: -10px;
+            }
+
+            .col-md-6,
+            .col-md-4,
+            .col-md-3,
+            .col-md-8 {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            /* Adjust spacing for mobile */
+            .mb-4 {
+                margin-bottom: 1.5rem !important;
+            }
+
+            /* Modal adjustments for mobile */
+            .modal-content {
+                margin: 20px 10px;
+            }
+
+            /* Form adjustments */
+            .form-control {
+                font-size: 16px;
+                /* Prevents zoom on iOS */
+            }
+
+            /* Navigation adjustments */
+            .navbar-nav {
+                text-align: center;
+            }
+
+            .nav-item {
+                margin: 5px 0;
+            }
+
+            /* Card adjustments */
+            .card-item,
+            .person-card,
+            .course-card,
+            .vacancy-card {
+                margin-bottom: 20px;
+            }
+
+            /* Button group adjustments */
+            .btn-group-vertical {
+                width: 100%;
+            }
+
+            .btn-group-vertical .btn {
+                margin: 2px 0;
+            }
+        }
+
+        /* Tablet-specific adjustments */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .hero {
+                min-height: 400px;
+                padding: 60px 0;
+            }
+
+            .section {
+                padding: 50px 0;
+            }
+
+            .gallery-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .person-card,
+            .course-card {
+                margin-bottom: 25px;
+            }
+        }
+
+        /* Orientation-specific adjustments */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .hero {
+                min-height: 300px;
+                padding: 40px 0;
+            }
+
+            .navbar {
+                padding: 10px 0;
+            }
+
+            .modal-dialog {
+                max-height: 80vh;
+                overflow-y: auto;
+            }
+        }
+
+        /* High-resolution displays */
+        @media (-webkit-min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi) {
+            .hero::before {
+                background-size: 50px 50px;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+
+            .navbar,
+            .footer,
+            .btn,
+            .back-to-top {
+                display: none !important;
+            }
+
+            .hero {
+                background: white !important;
+                color: black !important;
+                margin-top: 0;
+            }
+
+            .section {
+                padding: 20px 0;
+                break-inside: avoid;
+            }
+
+            .card-item,
+            .person-card,
+            .course-card {
+                box-shadow: none !important;
+                border: 1px solid #ddd !important;
+            }
+        }
+
+        /* Reduced motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --light-cream: #1a1a1a;
+                --white: #2d2d2d;
+                --dark-text: #e0e0e0;
+                --accent-grey: #404040;
+            }
+
+            body {
+                background-color: #1a1a1a;
+                color: #e0e0e0;
+            }
+
+            .card-item,
+            .person-card,
+            .course-card,
+            .principal-card,
+            .contact-card,
+            .vacancy-card {
+                background: #2d2d2d;
+                color: #e0e0e0;
+            }
+
+            .card-item p,
+            .principal-card p,
+            .course-info p {
+                color: #b0b0b0;
+            }
+        }
+
+        /* Touch device optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            .nav-link::after {
+                display: none;
+            }
+
+            .card-item:hover,
+            .person-card:hover,
+            .course-card:hover {
+                transform: none;
+            }
+
+            .btn:hover {
+                transform: none;
+            }
+
+            /* Increase tap target sizes */
+            .nav-link,
+            .btn,
+            .form-control {
+                min-height: 44px;
+            }
+
+            .gallery-item {
+                min-height: 44px;
+            }
+        }
+
+        /* Very small screens (old phones) */
+        @media (max-width: 360px) {
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero p {
+                font-size: 0.9rem;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+            }
+
+            .gallery-container {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar-brand {
+                font-size: 1rem;
+            }
+
+            .btn {
+                font-size: 0.8rem;
+                padding: 8px 16px;
+            }
+        }
+
+        /* Foldable devices */
+        @media (max-width: 280px) {
+            .container {
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+
+            .hero h1 {
+                font-size: 1.3rem;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
+
+            .gallery-container {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .gallery-item {
+                height: 120px;
+                font-size: 2rem;
+            }
+        }
+
+        /* Height-based media queries */
+        @media (max-height: 600px) and (orientation: landscape) {
+            .hero {
+                min-height: 250px;
+                padding: 30px 0;
+            }
+
+            .modal-dialog {
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+
+            .navbar {
+                padding: 8px 0;
+            }
+        }
+
+        /* Ultra-wide screens */
+        @media (min-width: 1600px) {
+            .container {
+                max-width: 1500px;
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .gallery-container {
+                grid-template-columns: repeat(6, 1fr);
+            }
+        }
+
+
+
+
+        /* Dropdown Navigation Styles */
+        .nav-item.dropdown {
+            position: relative;
+        }
+
+        .nav-link.dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding-right: 20px !important;
+        }
+
+        .nav-link.dropdown-toggle::after {
+            content: '\f078';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            border: none;
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link.dropdown-toggle.show::after {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            background: linear-gradient(135deg, var(--white) 0%, var(--light-cream) 100%);
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            padding: 10px 0;
+            margin-top: 10px;
+            min-width: 220px;
+            border-top: 3px solid var(--gold);
+            animation: dropdownFadeIn 0.3s ease;
+        }
+
+        @keyframes dropdownFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dropdown-item {
+            color: var(--dark-brown);
+            font-weight: 600;
+            padding: 12px 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dropdown-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: var(--gold);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .dropdown-item:hover {
+            background-color: rgba(245, 186, 44, 0.1);
+            color: var(--dark-brown);
+            padding-left: 25px;
+        }
+
+        .dropdown-item:hover::before {
+            opacity: 1;
+        }
+
+        .dropdown-item:active {
+            background-color: rgba(245, 186, 44, 0.2);
+        }
+
+        .dropdown-divider {
+            border-color: rgba(151, 132, 82, 0.2);
+            margin: 8px 0;
+        }
+
+        /* Dropdown icons */
+        .dropdown-item[href="#principal"]::before {
+            font-family: 'Font Awesome 6 Free';
+            content: '\f0e5';
+            font-weight: 900;
+        }
+
+        .dropdown-item[href="#vision"]::before {
+            font-family: 'Font Awesome 6 Free';
+            content: '\f06e';
+            font-weight: 900;
+        }
+
+        .dropdown-item[href="#goals"]::before {
+            font-family: 'Font Awesome 6 Free';
+            content: '\f140';
+            font-weight: 900;
+        }
+
+        .dropdown-item[href="#teachers"]::before {
+            font-family: 'Font Awesome 6 Free';
+            content: '\f501';
+            font-weight: 900;
+        }
+
+        .dropdown-item[href="#students"]::before {
+            font-family: 'Font Awesome 6 Free';
+            content: '\f19d';
+            font-weight: 900;
+        }
+
+        /* Mobile dropdown styles */
+        @media (max-width: 991.98px) {
+            .nav-item.dropdown .dropdown-menu {
+                background: rgba(255, 255, 255, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                backdrop-filter: blur(10px);
+                margin-top: 5px;
+            }
+
+            .dropdown-item {
+                color: var(--white);
+                padding: 10px 15px;
+            }
+
+            .dropdown-item:hover {
+                background-color: rgba(255, 255, 255, 0.2);
+                color: var(--gold);
+            }
+
+            .navbar-collapse .dropdown-menu {
+                margin-left: 15px;
+                width: calc(100% - 30px);
+            }
+        }
+
+        /* Desktop hover effects */
+        @media (min-width: 992px) {
+            .nav-item.dropdown:hover .dropdown-menu {
+                display: block;
+            }
+
+            .nav-item.dropdown:hover .nav-link.dropdown-toggle::after {
+                transform: rotate(180deg);
+            }
+        }
+
+        /* Active state for dropdown items */
+        .dropdown-item.active {
+            background-color: var(--gold);
+            color: var(--dark-brown);
+            font-weight: 700;
+        }
+
+        /* Dropdown header */
+        .dropdown-header {
+            color: var(--gold);
+            font-weight: 800;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 10px 20px 5px;
+            margin-bottom: 5px;
+            border-bottom: 1px solid rgba(151, 132, 82, 0.2);
+        }
+
+        /* Mega dropdown variant (if needed later) */
+        .dropdown-mega {
+            position: static !important;
+        }
+
+        .dropdown-menu-mega {
+            width: 100%;
+            left: 0 !important;
+            right: 0 !important;
+            padding: 30px;
+        }
+
+        /* Animation for dropdown */
+        .dropdown-menu {
+            transform-origin: top center;
+            animation: dropdownSlide 0.3s ease;
+        }
+
+        @keyframes dropdownSlide {
+            from {
+                opacity: 0;
+                transform: translateY(-15px) scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Focus states for accessibility */
+        .dropdown-item:focus {
+            outline: 2px solid var(--gold);
+            outline-offset: -2px;
+        }
+
+        .nav-link.dropdown-toggle:focus {
+            color: var(--gold) !important;
+        }
+
+        /* Dark theme support */
+        @media (prefers-color-scheme: dark) {
+            .dropdown-menu {
+                background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%);
+                border: 1px solid #444;
+            }
+
+            .dropdown-item {
+                color: #e0e0e0;
+            }
+
+            .dropdown-item:hover {
+                background-color: rgba(245, 186, 44, 0.15);
+                color: var(--gold);
+            }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+
+            .dropdown-menu,
+            .nav-link.dropdown-toggle::after,
+            .dropdown-item {
+                transition: none;
+                animation: none;
+            }
+        }
+
+        /* Touch device optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            .nav-item.dropdown:hover .dropdown-menu {
+                display: none;
+            }
+
+            .nav-item.dropdown.show .dropdown-menu {
+                display: block;
+            }
+        }
     </style>
 </head>
+
 <body>
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
@@ -1234,10 +1526,51 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item"><a class="nav-link" href="#home">HOME</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#course">COURSES</a></li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="true">
+                            HOME
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Principal message</a></li>
+                            <li><a class="dropdown-item" href="#">Vision </a></li>
+                            <li><a class="dropdown-item" href="#">goals </a></li>
+                            <li><a class="dropdown-item" href="#">Teachers  </a></li>
+                            <li><a class="dropdown-item" href="#">Students </a></li>
+
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="true">
+                            COURSE
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">ACADMICS</a></li>
+                            <li><a class="dropdown-item" href="#">SPORTS </a></li>
+                            <li><a class="dropdown-item" href="#">COMPUTER  </a></li>
+                            <li><a class="dropdown-item" href="#">ARTS  </a></li>
+                            <li><a class="dropdown-item" href="#">LANUUAGES </a></li>
+                            <li><a class="dropdown-item" href="#">HAND CRAFTS </a></li>
+
+                        </ul>
+                    </li>
                     <li class="nav-item"><a class="nav-link" href="#gallery">GALLERY</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">ABOUT</a></li>
+                     <li class="nav-item dropdown">
+                        <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="true">
+                            ABOUT
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">License </a></li>
+                            <li><a class="dropdown-item" href="#">Awards </a></li>
+                            <li><a class="dropdown-item" href="#">Registration   </a></li>
+                            <li><a class="dropdown-item" href="#">Affiliation  </a></li>
+                            
+                        </ul>
+                    </li>
                     <li class="nav-item"><a class="nav-link" href="#contact">CONTACT</a></li>
                     <li class="nav-item"><a class="nav-link" href="#vacancy">VACANCY</a></li>
                     <li class="nav-item mt-2 mt-lg-0">
@@ -1284,7 +1617,10 @@
                         <h3>Dr. Ahmad Ali Khan</h3>
                         <div class="position">Principal & Director</div>
                         <p>
-                            "Education is the cornerstone of a prosperous future. At Academy School, we believe in nurturing not just brilliant minds, but also compassionate hearts. Our commitment to excellence, innovation, and holistic development ensures that every student becomes a responsible global citizen prepared to lead tomorrow's world."
+                            "Education is the cornerstone of a prosperous future. At Academy School, we believe in
+                            nurturing not just brilliant minds, but also compassionate hearts. Our commitment to
+                            excellence, innovation, and holistic development ensures that every student becomes a
+                            responsible global citizen prepared to lead tomorrow's world."
                         </p>
                     </div>
                 </div>
@@ -1301,7 +1637,9 @@
                     <div class="card-item">
                         <i class="fas fa-eye"></i>
                         <h4>Our Vision</h4>
-                        <p>To be a beacon of academic excellence and character development, fostering confident, creative, and compassionate leaders equipped to excel in a dynamic global community and make meaningful contributions to society.</p>
+                        <p>To be a beacon of academic excellence and character development, fostering confident,
+                            creative, and compassionate leaders equipped to excel in a dynamic global community and make
+                            meaningful contributions to society.</p>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -1309,10 +1647,10 @@
                         <i class="fas fa-bullseye"></i>
                         <h4>Our Goals</h4>
                         <p>✓ Excellence in academic achievement<br>
-                        ✓ Leadership & critical thinking<br>
-                        ✓ Creativity & innovation<br>
-                        ✓ Moral & ethical values<br>
-                        ✓ Global readiness</p>
+                            ✓ Leadership & critical thinking<br>
+                            ✓ Creativity & innovation<br>
+                            ✓ Moral & ethical values<br>
+                            ✓ Global readiness</p>
                     </div>
                 </div>
             </div>
@@ -1331,7 +1669,8 @@
                         </div>
                         <div class="course-info">
                             <h5>Mathematics & Sciences</h5>
-                            <p>Comprehensive curriculum covering algebra, geometry, calculus, physics, chemistry, and biology.</p>
+                            <p>Comprehensive curriculum covering algebra, geometry, calculus, physics, chemistry, and
+                                biology.</p>
                             <div class="course-meta">
                                 <span><i class="fas fa-clock"></i> 5-7 PM</span>
                                 <span><i class="fas fa-user"></i> Grades 6-12</span>
@@ -1346,7 +1685,8 @@
                         </div>
                         <div class="course-info">
                             <h5>Languages & Literature</h5>
-                            <p>English, Urdu, and Arabic language courses with focus on literature, grammar, and composition.</p>
+                            <p>English, Urdu, and Arabic language courses with focus on literature, grammar, and
+                                composition.</p>
                             <div class="course-meta">
                                 <span><i class="fas fa-clock"></i> 3-5 PM</span>
                                 <span><i class="fas fa-user"></i> All Grades</span>
@@ -1571,8 +1911,10 @@
                             <span><i class="fas fa-clock"></i> Full-time</span>
                             <span><i class="fas fa-map-marker-alt"></i> Karachi</span>
                         </div>
-                        <p>We are looking for an experienced Mathematics teacher for secondary level with strong pedagogical skills and passion for teaching.</p>
-                        <button class="btn btn-submit mt-2" data-bs-toggle="modal" data-bs-target="#applyModal">Apply Now</button>
+                        <p>We are looking for an experienced Mathematics teacher for secondary level with strong
+                            pedagogical skills and passion for teaching.</p>
+                        <button class="btn btn-submit mt-2" data-bs-toggle="modal" data-bs-target="#applyModal">Apply
+                            Now</button>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -1582,8 +1924,10 @@
                             <span><i class="fas fa-clock"></i> Part-time</span>
                             <span><i class="fas fa-map-marker-alt"></i> Karachi</span>
                         </div>
-                        <p>Looking for a lab assistant to support our science department with laboratory setup, maintenance, and student assistance.</p>
-                        <button class="btn btn-submit mt-2" data-bs-toggle="modal" data-bs-target="#applyModal">Apply Now</button>
+                        <p>Looking for a lab assistant to support our science department with laboratory setup,
+                            maintenance, and student assistance.</p>
+                        <button class="btn btn-submit mt-2" data-bs-toggle="modal" data-bs-target="#applyModal">Apply
+                            Now</button>
                     </div>
                 </div>
             </div>
@@ -1596,7 +1940,8 @@
             <div class="row">
                 <div class="col-md-4 mb-3">
                     <h5><i class="fas fa-graduation-cap"></i> Academy School</h5>
-                    <p>Delivering quality education and shaping tomorrow's leaders with integrity, innovation, and excellence.</p>
+                    <p>Delivering quality education and shaping tomorrow's leaders with integrity, innovation, and
+                        excellence.</p>
                 </div>
                 <div class="col-md-4 mb-3">
                     <h5>Quick Links</h5>
@@ -1816,7 +2161,7 @@
     <script>
         // Back to top button functionality
         const backToTopButton = document.querySelector('.back-to-top');
-        
+
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 300) {
                 backToTopButton.classList.add('active');
@@ -1824,55 +2169,55 @@
                 backToTopButton.classList.remove('active');
             }
         });
-        
+
         backToTopButton.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
         });
-        
+
         // Form submission handlers
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
             e.preventDefault();
             alert('Login functionality would be implemented here!');
             // In a real application, you would send this data to a server
         });
-        
-        document.getElementById('signupForm').addEventListener('submit', function(e) {
+
+        document.getElementById('signupForm').addEventListener('submit', function (e) {
             e.preventDefault();
             alert('Account creation functionality would be implemented here!');
             // In a real application, you would send this data to a server
         });
-        
-        document.getElementById('registerForm').addEventListener('submit', function(e) {
+
+        document.getElementById('registerForm').addEventListener('submit', function (e) {
             e.preventDefault();
             alert('Student registration functionality would be implemented here!');
             // In a real application, you would send this data to a server
         });
-        
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
+
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
             e.preventDefault();
             alert('Thank you for your message! We will get back to you soon.');
             // In a real application, you would send this data to a server
         });
-        
-        document.getElementById('applyForm').addEventListener('submit', function(e) {
+
+        document.getElementById('applyForm').addEventListener('submit', function (e) {
             e.preventDefault();
             alert('Application submitted successfully! We will review your application and contact you soon.');
             // In a real application, you would send this data to a server
         });
-        
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                
+
                 const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
+                if (targetId === '#') return;
+
                 const targetElement = document.querySelector(targetId);
-                if(targetElement) {
+                if (targetElement) {
                     window.scrollTo({
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
@@ -1882,4 +2227,5 @@
         });
     </script>
 </body>
+
 </html>
