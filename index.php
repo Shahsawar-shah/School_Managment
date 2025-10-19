@@ -1,0 +1,1885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academy School - Management System</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #F5BA2C;
+            --brown: #978452;
+            --dark-brown: #6B5B3F;
+            --light-cream: #FEFAF0;
+            --white: #FFFFFF;
+            --dark-text: #2D2D2D;
+            --accent-teal: #2C7873;
+            --accent-grey: #D4D4D4;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--dark-text);
+            background-color: var(--light-cream);
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><text x="500" y="500" font-family="Arial" font-size="800" font-weight="bold" text-anchor="middle" dy=".3em" fill="rgba(151,132,82,0.08)">✎</text></svg>');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 150%;
+            position: relative;
+        }
+        
+        /* Navbar - Premium Design */
+        .navbar {
+            background: linear-gradient(135deg, var(--dark-brown) 0%, var(--brown) 50%, var(--gold) 100%);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            padding: 14px 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.35rem;
+            color: var(--white) !important;
+            margin-right: 50px;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .navbar-brand i {
+            font-size: 1.5rem;
+            background: rgba(255,255,255,0.2);
+            padding: 6px 10px;
+            border-radius: 6px;
+        }
+        
+        .nav-link {
+            color: rgba(255,255,255,0.9) !important;
+            margin: 0 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            padding: 8px 0 !important;
+        }
+        
+        .nav-link:hover {
+            color: var(--gold) !important;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -8px;
+            left: 0;
+            background: linear-gradient(90deg, var(--gold), transparent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .btn-auth {
+            background: var(--gold);
+            color: var(--dark-brown);
+            border: none;
+            padding: 8px 18px;
+            margin-left: 8px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(245, 186, 44, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        
+        .btn-auth:hover {
+            background: var(--white);
+            color: var(--dark-brown);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(245, 186, 44, 0.4);
+        }
+        
+        /* Hero Section - Stunning Design */
+        .hero {
+            background: linear-gradient(135deg, var(--dark-brown) 0%, var(--brown) 35%, var(--gold) 100%);
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+            min-height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></svg>');
+            opacity: 0.1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .hero p {
+            font-size: 1.15rem;
+            margin-bottom: 30px;
+            opacity: 0.98;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+        
+        .hero .btn {
+            padding: 12px 28px;
+            font-size: 1rem;
+            font-weight: 700;
+            margin: 0 8px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn-hero-primary {
+            background-color: var(--gold);
+            border: none;
+            color: var(--dark-brown);
+            box-shadow: 0 6px 20px rgba(245, 186, 44, 0.4);
+        }
+        
+        .btn-hero-primary:hover {
+            background-color: var(--white);
+            color: var(--dark-brown);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(245, 186, 44, 0.5);
+        }
+        
+        .btn-hero-secondary {
+            background-color: transparent;
+            border: 2.5px solid var(--gold);
+            color: var(--gold);
+        }
+        
+        .btn-hero-secondary:hover {
+            background-color: var(--gold);
+            color: var(--dark-brown);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(245, 186, 44, 0.4);
+        }
+        
+        /* Sections */
+        .section {
+            padding: 60px 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--dark-brown);
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--accent-teal));
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            border-radius: 2px;
+        }
+        
+        /* Principal Message */
+        .principal-section {
+            background: linear-gradient(180deg, var(--light-cream) 0%, rgba(245, 186, 44, 0.08) 100%);
+            position: relative;
+        }
+        
+        .principal-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            border-top: 5px solid var(--gold);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .principal-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--brown), var(--accent-teal));
+        }
+        
+        .principal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+        
+        .principal-image {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--brown), var(--gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--white);
+            box-shadow: 0 6px 20px rgba(151, 132, 82, 0.3);
+            border: 3px solid var(--gold);
+        }
+        
+        .principal-card h3 {
+            color: var(--dark-brown);
+            font-weight: 800;
+            font-size: 1.25rem;
+            margin-bottom: 5px;
+            letter-spacing: -0.3px;
+        }
+        
+        .principal-card .position {
+            color: var(--gold);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .principal-card p {
+            color: #555;
+            font-size: 0.98rem;
+            line-height: 1.8;
+            font-style: italic;
+        }
+        
+        /* Vision & Goals */
+        .vision-goals {
+            background: var(--white);
+        }
+        
+        .card-item {
+            background: linear-gradient(135deg, var(--white) 0%, rgba(245, 186, 44, 0.05) 100%);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+            border-left: 5px solid var(--gold);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-item::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200px;
+            height: 200px;
+            background: rgba(245, 186, 44, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .card-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+            border-left-color: var(--accent-teal);
+        }
+        
+        .card-item:hover::before {
+            top: -30%;
+            right: -30%;
+        }
+        
+        .card-item i {
+            font-size: 2.2rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .card-item:hover i {
+            color: var(--accent-teal);
+            transform: scale(1.1);
+        }
+        
+        .card-item h4 {
+            color: var(--dark-brown);
+            font-weight: 800;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            letter-spacing: -0.3px;
+        }
+        
+        .card-item p {
+            color: #666;
+            font-size: 0.97rem;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* People Section */
+        .people-section {
+            background: linear-gradient(180deg, var(--light-cream) 0%, rgba(245, 186, 44, 0.05) 100%);
+        }
+        
+        .person-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            text-align: center;
+            border: 2px solid transparent;
+        }
+        
+        .person-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+            border-color: var(--gold);
+        }
+        
+        .person-image {
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(135deg, var(--brown) 0%, var(--gold) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .person-image::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .person-card:hover .person-image::after {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .person-info {
+            padding: 18px;
+        }
+        
+        .person-info h5 {
+            color: var(--dark-brown);
+            font-weight: 800;
+            font-size: 1.05rem;
+            margin-bottom: 5px;
+            letter-spacing: -0.2px;
+        }
+        
+        .person-info p {
+            color: var(--gold);
+            font-size: 0.88rem;
+            margin: 0;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        
+        /* Courses Section */
+        .courses-section {
+            background: var(--white);
+        }
+        
+        .course-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            margin-bottom: 25px;
+            border: 2px solid transparent;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+            border-color: var(--gold);
+        }
+        
+        .course-image {
+            width: 100%;
+            height: 160px;
+            background: linear-gradient(135deg, var(--brown) 0%, var(--gold) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .course-info {
+            padding: 20px;
+        }
+        
+        .course-info h5 {
+            color: var(--dark-brown);
+            font-weight: 800;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            letter-spacing: -0.2px;
+        }
+        
+        .course-info p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--brown);
+            font-weight: 600;
+        }
+        
+        /* Gallery Section */
+        .gallery-section {
+            background: linear-gradient(180deg, var(--light-cream) 0%, rgba(245, 186, 44, 0.05) 100%);
+        }
+        
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            height: 200px;
+            background: linear-gradient(135deg, var(--brown) 0%, var(--gold) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 3rem;
+            cursor: pointer;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background: var(--white);
+        }
+        
+        .contact-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            border-top: 5px solid var(--gold);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+        
+        .contact-info {
+            margin-bottom: 20px;
+        }
+        
+        .contact-info i {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-right: 10px;
+            width: 20px;
+        }
+        
+        /* Vacancy Section */
+        .vacancy-section {
+            background: linear-gradient(180deg, var(--light-cream) 0%, rgba(245, 186, 44, 0.05) 100%);
+        }
+        
+        .vacancy-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            border-left: 5px solid var(--gold);
+        }
+        
+        .vacancy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+        }
+        
+        .vacancy-card h5 {
+            color: var(--dark-brown);
+            font-weight: 800;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        .vacancy-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 0.85rem;
+            color: var(--brown);
+            font-weight: 600;
+        }
+        
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--dark-brown) 0%, var(--brown) 50%, rgba(245, 186, 44, 0.9) 100%);
+            color: var(--white);
+            padding: 35px 0 15px;
+            margin-top: 50px;
+            font-size: 0.95rem;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .footer h5 {
+            font-weight: 800;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        
+        .footer p {
+            font-size: 0.92rem;
+            margin-bottom: 8px;
+            opacity: 0.95;
+        }
+        
+        .footer a {
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.92rem;
+        }
+        
+        .footer a:hover {
+            color: var(--white);
+            text-decoration: underline;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            margin-top: 20px;
+            font-size: 0.88rem;
+            opacity: 0.9;
+        }
+        
+        /* Modal Styling */
+        .modal-content {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, var(--dark-brown) 0%, var(--brown) 50%, var(--gold) 100%);
+            color: var(--white);
+            border: none;
+            padding: 20px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+        
+        .form-label {
+            font-weight: 700;
+            color: var(--dark-brown);
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        
+        .form-control {
+            font-size: 0.95rem;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+            padding: 10px 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 0.2rem rgba(245, 186, 44, 0.25);
+            background-color: rgba(245, 186, 44, 0.02);
+        }
+        
+        .btn-submit {
+            background: linear-gradient(135deg, var(--gold), var(--brown));
+            color: var(--white);
+            font-weight: 800;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(245, 186, 44, 0.3);
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(245, 186, 44, 0.4);
+            color: var(--white);
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--gold);
+            color: var(--dark-brown);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+
+        /* Responsive CSS for School Management Website */
+
+/* Extra small devices (phones, 576px and down) */
+@media (max-width: 576px) {
+    .hero h1 {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+    
+    .hero .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        margin: 5px 0;
+        display: block;
+        width: 100%;
+    }
+    
+    .section {
+        padding: 40px 0;
+    }
+    
+    .section-title {
+        font-size: 1.6rem;
+        margin-bottom: 30px;
+    }
+    
+    .navbar-brand {
+        font-size: 1.1rem;
+        margin-right: 0;
+    }
+    
+    .nav-link {
+        margin: 0 5px;
+        font-size: 0.85rem;
+        text-align: center;
+    }
+    
+    .btn-auth {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        margin: 5px;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .principal-card {
+        padding: 25px 20px;
+    }
+    
+    .principal-image {
+        width: 90px;
+        height: 90px;
+        font-size: 2.2rem;
+    }
+    
+    .card-item {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .person-card, .course-card {
+        margin-bottom: 20px;
+    }
+    
+    .gallery-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .gallery-item {
+        height: 150px;
+        font-size: 2.5rem;
+    }
+    
+    .contact-card {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .vacancy-card {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .footer {
+        padding: 25px 0 10px;
+    }
+    
+    .footer h5 {
+        font-size: 1rem;
+        margin-top: 15px;
+    }
+    
+    .modal-dialog {
+        margin: 10px;
+    }
+    
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+    }
+}
+
+/* Small devices (landscape phones, 576px to 768px) */
+@media (min-width: 576px) and (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+    
+    .hero p {
+        font-size: 1.05rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+    
+    .gallery-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+    
+    .person-card, .course-card {
+        margin-bottom: 20px;
+    }
+    
+    .principal-card {
+        padding: 30px 25px;
+    }
+    
+    .btn-auth {
+        padding: 7px 14px;
+        font-size: 0.85rem;
+    }
+}
+
+/* Medium devices (tablets, 768px to 992px) */
+@media (min-width: 768px) and (max-width: 992px) {
+    .hero h1 {
+        font-size: 2.4rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .gallery-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .navbar-collapse {
+        background: linear-gradient(135deg, var(--dark-brown) 0%, var(--brown) 50%, var(--gold) 100%);
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 10px;
+    }
+    
+    .nav-link {
+        text-align: left;
+        padding: 8px 15px !important;
+    }
+    
+    .btn-auth {
+        margin: 10px 0;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Large devices (desktops, 992px to 1200px) */
+@media (min-width: 992px) and (max-width: 1200px) {
+    .container {
+        max-width: 960px;
+    }
+    
+    .hero h1 {
+        font-size: 2.6rem;
+    }
+    
+    .gallery-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+/* Mobile-first responsive adjustments */
+@media (max-width: 768px) {
+    /* Stack columns vertically on mobile */
+    .row {
+        margin-left: -10px;
+        margin-right: -10px;
+    }
+    
+    .col-md-6, .col-md-4, .col-md-3, .col-md-8 {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    /* Adjust spacing for mobile */
+    .mb-4 {
+        margin-bottom: 1.5rem !important;
+    }
+    
+    /* Modal adjustments for mobile */
+    .modal-content {
+        margin: 20px 10px;
+    }
+    
+    /* Form adjustments */
+    .form-control {
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+    
+    /* Navigation adjustments */
+    .navbar-nav {
+        text-align: center;
+    }
+    
+    .nav-item {
+        margin: 5px 0;
+    }
+    
+    /* Card adjustments */
+    .card-item, .person-card, .course-card, .vacancy-card {
+        margin-bottom: 20px;
+    }
+    
+    /* Button group adjustments */
+    .btn-group-vertical {
+        width: 100%;
+    }
+    
+    .btn-group-vertical .btn {
+        margin: 2px 0;
+    }
+}
+
+/* Tablet-specific adjustments */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .hero {
+        min-height: 400px;
+        padding: 60px 0;
+    }
+    
+    .section {
+        padding: 50px 0;
+    }
+    
+    .gallery-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .person-card, .course-card {
+        margin-bottom: 25px;
+    }
+}
+
+/* Orientation-specific adjustments */
+@media (max-width: 768px) and (orientation: landscape) {
+    .hero {
+        min-height: 300px;
+        padding: 40px 0;
+    }
+    
+    .navbar {
+        padding: 10px 0;
+    }
+    
+    .modal-dialog {
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+}
+
+/* High-resolution displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .hero::before {
+        background-size: 50px 50px;
+    }
+}
+
+/* Print styles */
+@media print {
+    .navbar, .footer, .btn, .back-to-top {
+        display: none !important;
+    }
+    
+    .hero {
+        background: white !important;
+        color: black !important;
+        margin-top: 0;
+    }
+    
+    .section {
+        padding: 20px 0;
+        break-inside: avoid;
+    }
+    
+    .card-item, .person-card, .course-card {
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+    }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --light-cream: #1a1a1a;
+        --white: #2d2d2d;
+        --dark-text: #e0e0e0;
+        --accent-grey: #404040;
+    }
+    
+    body {
+        background-color: #1a1a1a;
+        color: #e0e0e0;
+    }
+    
+    .card-item, .person-card, .course-card, .principal-card, .contact-card, .vacancy-card {
+        background: #2d2d2d;
+        color: #e0e0e0;
+    }
+    
+    .card-item p, .principal-card p, .course-info p {
+        color: #b0b0b0;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .nav-link::after {
+        display: none;
+    }
+    
+    .card-item:hover, .person-card:hover, .course-card:hover {
+        transform: none;
+    }
+    
+    .btn:hover {
+        transform: none;
+    }
+    
+    /* Increase tap target sizes */
+    .nav-link, .btn, .form-control {
+        min-height: 44px;
+    }
+    
+    .gallery-item {
+        min-height: 44px;
+    }
+}
+
+/* Very small screens (old phones) */
+@media (max-width: 360px) {
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+    
+    .hero p {
+        font-size: 0.9rem;
+    }
+    
+    .section-title {
+        font-size: 1.4rem;
+    }
+    
+    .gallery-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .navbar-brand {
+        font-size: 1rem;
+    }
+    
+    .btn {
+        font-size: 0.8rem;
+        padding: 8px 16px;
+    }
+}
+
+/* Foldable devices */
+@media (max-width: 280px) {
+    .container {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    
+    .hero h1 {
+        font-size: 1.3rem;
+    }
+    
+    .section-title {
+        font-size: 1.2rem;
+    }
+    
+    .gallery-container {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .gallery-item {
+        height: 120px;
+        font-size: 2rem;
+    }
+}
+
+/* Height-based media queries */
+@media (max-height: 600px) and (orientation: landscape) {
+    .hero {
+        min-height: 250px;
+        padding: 30px 0;
+    }
+    
+    .modal-dialog {
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    
+    .navbar {
+        padding: 8px 0;
+    }
+}
+
+/* Ultra-wide screens */
+@media (min-width: 1600px) {
+    .container {
+        max-width: 1500px;
+    }
+    
+    .hero h1 {
+        font-size: 3.5rem;
+    }
+    
+    .section-title {
+        font-size: 2.5rem;
+    }
+    
+    .gallery-container {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <i class="fas fa-book-open"></i> Academy School
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="#home">HOME</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#course">COURSES</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#gallery">GALLERY</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">ABOUT</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">CONTACT</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#vacancy">VACANCY</a></li>
+                    <li class="nav-item mt-2 mt-lg-0">
+                        <button class="btn-auth" data-bs-toggle="modal" data-bs-target="#loginModal">
+                            <i class="fas fa-sign-in-alt"></i> LOGIN
+                        </button>
+                    </li>
+                    <li class="nav-item mt-2 mt-lg-0">
+                        <button class="btn-auth" data-bs-toggle="modal" data-bs-target="#signupModal">
+                            <i class="fas fa-user-plus"></i> SIGNUP
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="container text-center">
+                <h1><i class="fas fa-graduation-cap"></i> Welcome to Academy School</h1>
+                <p>Empowering Minds, Shaping Futures - Quality Education Excellence</p>
+                <button class="btn btn-hero-primary" data-bs-toggle="modal" data-bs-target="#registerModal">
+                    <i class="fas fa-clipboard-list"></i> REGISTER NOW
+                </button>
+                <a href="#course" class="btn btn-hero-secondary">
+                    <i class="fas fa-info-circle"></i> DISCOVER MORE
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRINCIPAL MESSAGE -->
+    <section class="section principal-section" id="about">
+        <div class="container">
+            <h2 class="section-title">Principal's Message</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="principal-card">
+                        <div class="principal-image">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h3>Dr. Ahmad Ali Khan</h3>
+                        <div class="position">Principal & Director</div>
+                        <p>
+                            "Education is the cornerstone of a prosperous future. At Academy School, we believe in nurturing not just brilliant minds, but also compassionate hearts. Our commitment to excellence, innovation, and holistic development ensures that every student becomes a responsible global citizen prepared to lead tomorrow's world."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VISION & GOALS -->
+    <section class="section vision-goals" id="vision">
+        <div class="container">
+            <h2 class="section-title">Our Vision & Goals</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card-item">
+                        <i class="fas fa-eye"></i>
+                        <h4>Our Vision</h4>
+                        <p>To be a beacon of academic excellence and character development, fostering confident, creative, and compassionate leaders equipped to excel in a dynamic global community and make meaningful contributions to society.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card-item">
+                        <i class="fas fa-bullseye"></i>
+                        <h4>Our Goals</h4>
+                        <p>✓ Excellence in academic achievement<br>
+                        ✓ Leadership & critical thinking<br>
+                        ✓ Creativity & innovation<br>
+                        ✓ Moral & ethical values<br>
+                        ✓ Global readiness</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COURSES SECTION -->
+    <section class="section courses-section" id="course">
+        <div class="container">
+            <h2 class="section-title">Our Courses</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="course-card">
+                        <div class="course-image">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <div class="course-info">
+                            <h5>Mathematics & Sciences</h5>
+                            <p>Comprehensive curriculum covering algebra, geometry, calculus, physics, chemistry, and biology.</p>
+                            <div class="course-meta">
+                                <span><i class="fas fa-clock"></i> 5-7 PM</span>
+                                <span><i class="fas fa-user"></i> Grades 6-12</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="course-card">
+                        <div class="course-image">
+                            <i class="fas fa-language"></i>
+                        </div>
+                        <div class="course-info">
+                            <h5>Languages & Literature</h5>
+                            <p>English, Urdu, and Arabic language courses with focus on literature, grammar, and composition.</p>
+                            <div class="course-meta">
+                                <span><i class="fas fa-clock"></i> 3-5 PM</span>
+                                <span><i class="fas fa-user"></i> All Grades</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="course-card">
+                        <div class="course-image">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="course-info">
+                            <h5>Computer Science</h5>
+                            <p>Programming, web development, and computer fundamentals for the digital age.</p>
+                            <div class="course-meta">
+                                <span><i class="fas fa-clock"></i> 4-6 PM</span>
+                                <span><i class="fas fa-user"></i> Grades 8-12</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section class="section gallery-section" id="gallery">
+        <div class="container">
+            <h2 class="section-title">School Gallery</h2>
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="gallery-item">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <div class="gallery-item">
+                    <i class="fas fa-football-ball"></i>
+                </div>
+                <div class="gallery-item">
+                    <i class="fas fa-music"></i>
+                </div>
+                <div class="gallery-item">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <div class="gallery-item">
+                    <i class="fas fa-book"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEACHERS SECTION -->
+    <section class="section people-section" id="teachers">
+        <div class="container">
+            <h2 class="section-title">Meet Our Expert Educators</h2>
+            <div class="row">
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="person-card">
+                        <div class="person-image">
+                            <i class="fas fa-chalkboard-user"></i>
+                        </div>
+                        <div class="person-info">
+                            <h5>Mrs. Fatima Hassan</h5>
+                            <p>English Literature</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="person-card">
+                        <div class="person-image">
+                            <i class="fas fa-chalkboard-user"></i>
+                        </div>
+                        <div class="person-info">
+                            <h5>Mr. Muhammad Hasan</h5>
+                            <p>Mathematics</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="person-card">
+                        <div class="person-image">
+                            <i class="fas fa-chalkboard-user"></i>
+                        </div>
+                        <div class="person-info">
+                            <h5>Dr. Sarah Ahmed</h5>
+                            <p>Science & Physics</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="person-card">
+                        <div class="person-image">
+                            <i class="fas fa-chalkboard-user"></i>
+                        </div>
+                        <div class="person-info">
+                            <h5>Mr. Ali Khan</h5>
+                            <p>History & Social Studies</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STUDENTS SECTION -->
+    <section class="section" id="students">
+        <div class="container">
+            <h2 class="section-title">Our Brilliant Students</h2>
+            <div class="row">
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="person-card">
+                        <div class="person-image">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="person-info">
+                            <h5>Ahmed Malik</h5>
+                            <p>Grade 10 - Distinction</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="person-card">
+                        <div class="person-image">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="person-info">
+                            <h5>Ayesha Khan</h5>
+                            <p>Grade 9 - Honour Roll</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="person-card">
+                        <div class="person-image">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="person-info">
+                            <h5>Hassan Ali</h5>
+                            <p>Grade 11 - Leadership</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="person-card">
+                        <div class="person-image">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="person-info">
+                            <h5>Mina Rashid</h5>
+                            <p>Grade 10 - Sports Head</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="section contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="contact-card">
+                        <h4 class="mb-4">Get In Touch</h4>
+                        <div class="contact-info">
+                            <p><i class="fas fa-map-marker-alt"></i> 123 Education Street, Karachi, Sindh, Pakistan</p>
+                            <p><i class="fas fa-phone"></i> +92 (300) 123-4567</p>
+                            <p><i class="fas fa-envelope"></i> info@academyschool.edu</p>
+                            <p><i class="fas fa-clock"></i> Monday - Friday: 8:00 AM - 4:00 PM</p>
+                        </div>
+                        <div class="mt-4">
+                            <h5>Follow Us</h5>
+                            <div class="d-flex gap-3 mt-3">
+                                <a href="#" class="text-dark"><i class="fab fa-facebook fa-2x"></i></a>
+                                <a href="#" class="text-dark"><i class="fab fa-twitter fa-2x"></i></a>
+                                <a href="#" class="text-dark"><i class="fab fa-instagram fa-2x"></i></a>
+                                <a href="#" class="text-dark"><i class="fab fa-linkedin fa-2x"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="contact-card">
+                        <h4 class="mb-4">Send Us a Message</h4>
+                        <form id="contactForm">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" id="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="subject" class="form-label">Subject</label>
+                                <input type="text" class="form-control" id="subject" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control" id="message" rows="4" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-submit w-100">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VACANCY SECTION -->
+    <section class="section vacancy-section" id="vacancy">
+        <div class="container">
+            <h2 class="section-title">Job Vacancies</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="vacancy-card">
+                        <h5>Mathematics Teacher</h5>
+                        <div class="vacancy-meta">
+                            <span><i class="fas fa-clock"></i> Full-time</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Karachi</span>
+                        </div>
+                        <p>We are looking for an experienced Mathematics teacher for secondary level with strong pedagogical skills and passion for teaching.</p>
+                        <button class="btn btn-submit mt-2" data-bs-toggle="modal" data-bs-target="#applyModal">Apply Now</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="vacancy-card">
+                        <h5>Science Lab Assistant</h5>
+                        <div class="vacancy-meta">
+                            <span><i class="fas fa-clock"></i> Part-time</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Karachi</span>
+                        </div>
+                        <p>Looking for a lab assistant to support our science department with laboratory setup, maintenance, and student assistance.</p>
+                        <button class="btn btn-submit mt-2" data-bs-toggle="modal" data-bs-target="#applyModal">Apply Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5><i class="fas fa-graduation-cap"></i> Academy School</h5>
+                    <p>Delivering quality education and shaping tomorrow's leaders with integrity, innovation, and excellence.</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Quick Links</h5>
+                    <p><a href="#home">Home</a></p>
+                    <p><a href="#course">Courses</a></p>
+                    <p><a href="#about">About Us</a></p>
+                    <p><a href="#contact">Get in Touch</a></p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Contact Information</h5>
+                    <p><i class="fas fa-phone"></i> +92 (300) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> info@academyschool.edu</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Karachi, Sindh, Pakistan</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Academy School. All rights reserved. | Designed for Excellence</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-sign-in-alt"></i> Login</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label class="form-label">Username or Email</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control" required>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">Remember me</label>
+                        </div>
+                        <button type="submit" class="btn btn-submit w-100">Login</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <a href="#" class="text-muted">Forgot password?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="modal fade" id="signupModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-user-plus"></i> Create Account</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="signupForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">First Name</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Last Name</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" required>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="agreeTerms" required>
+                            <label class="form-check-label" for="agreeTerms">I agree to the Terms & Conditions</label>
+                        </div>
+                        <button type="submit" class="btn btn-submit w-100">Create Account</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-clipboard-list"></i> Student Registration</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="registerForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Student Full Name</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Date of Birth</label>
+                                <input type="date" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Parent/Guardian Name</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Parent/Guardian Phone</label>
+                                <input type="tel" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Address</label>
+                            <textarea class="form-control" rows="2" required></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Grade Applying For</label>
+                                <select class="form-control" required>
+                                    <option value="">Select Grade</option>
+                                    <option value="1">Grade 1</option>
+                                    <option value="2">Grade 2</option>
+                                    <option value="3">Grade 3</option>
+                                    <option value="4">Grade 4</option>
+                                    <option value="5">Grade 5</option>
+                                    <option value="6">Grade 6</option>
+                                    <option value="7">Grade 7</option>
+                                    <option value="8">Grade 8</option>
+                                    <option value="9">Grade 9</option>
+                                    <option value="10">Grade 10</option>
+                                    <option value="11">Grade 11</option>
+                                    <option value="12">Grade 12</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Previous School (if any)</label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-submit w-100">Submit Registration</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Apply Modal -->
+    <div class="modal fade" id="applyModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-briefcase"></i> Apply for Position</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="applyForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Position Applied For</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Cover Letter</label>
+                            <textarea class="form-control" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Upload Resume (PDF)</label>
+                            <input type="file" class="form-control" accept=".pdf" required>
+                        </div>
+                        <button type="submit" class="btn btn-submit w-100">Submit Application</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Back to top button functionality
+        const backToTopButton = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('active');
+            } else {
+                backToTopButton.classList.remove('active');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Form submission handlers
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Login functionality would be implemented here!');
+            // In a real application, you would send this data to a server
+        });
+        
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Account creation functionality would be implemented here!');
+            // In a real application, you would send this data to a server
+        });
+        
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Student registration functionality would be implemented here!');
+            // In a real application, you would send this data to a server
+        });
+        
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            // In a real application, you would send this data to a server
+        });
+        
+        document.getElementById('applyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Application submitted successfully! We will review your application and contact you soon.');
+            // In a real application, you would send this data to a server
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
