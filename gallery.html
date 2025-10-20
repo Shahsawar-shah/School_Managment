@@ -1,1 +1,616 @@
-Hello website Gallary
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Academy School</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #F5BA2C;
+            --brown: #978452;
+            --dark-brown: #6B5B3F;
+            --light-cream: #FEFAF0;
+            --white: #FFFFFF;
+            --dark-text: #2D2D2D;
+            --accent-teal: #2C7873;
+            --accent-grey: #D4D4D4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--dark-text);
+            background-color: var(--light-cream);
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            background-image: url('./logo.png');
+            background-size: 250px;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.08;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background: linear-gradient(135deg, var(--dark-brown) 0%, var(--brown) 50%, var(--gold) 100%);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            padding: 14px 0;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.35rem;
+            color: var(--white) !important;
+            margin-right: 50px;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .navbar-brand i {
+            font-size: 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 6px 10px;
+            border-radius: 6px;
+        }
+
+        /* Gallery Hero Section */
+        .gallery-hero {
+            background: linear-gradient(135deg, var(--dark-brown) 0%, var(--brown) 35%, var(--gold) 100%);
+            color: var(--white);
+            padding: 100px 0 60px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .gallery-hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-hero p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        /* Gallery Filter */
+        .gallery-filter {
+            background: var(--white);
+            padding: 30px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--dark-brown);
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--gold);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(245, 186, 44, 0.3);
+        }
+
+        /* Gallery Grid */
+        .gallery-section {
+            padding: 80px 0;
+            background: linear-gradient(180deg, var(--light-cream) 0%, rgba(245, 186, 44, 0.05) 100%);
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: var(--white);
+            aspect-ratio: 4/3;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 30px 20px 20px;
+            transform: translateY(100%);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .gallery-date {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Event Categories */
+        .event-category {
+            margin-bottom: 60px;
+        }
+
+        .category-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--dark-brown);
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .category-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--accent-teal));
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            border-radius: 2px;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: linear-gradient(135deg, var(--dark-brown) 0%, var(--brown) 100%);
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 30px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+
+        /* Video Gallery */
+        .video-gallery {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .video-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            background: var(--dark-brown);
+            aspect-ratio: 16/9;
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .video-item:hover .video-thumbnail {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        .video-play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(245, 186, 44, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .video-item:hover .video-play-btn {
+            background: var(--gold);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--dark-brown) 0%, var(--brown) 50%, rgba(245, 186, 44, 0.9) 100%);
+            color: var(--white);
+            padding: 50px 0 20px;
+            margin-top: 50px;
+        }
+
+        /* Modal Styles */
+        .gallery-modal .modal-content {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .gallery-modal .modal-header {
+            background: linear-gradient(135deg, var(--dark-brown) 0%, var(--brown) 100%);
+            color: var(--white);
+            border: none;
+            padding: 20px;
+        }
+
+        .gallery-modal .modal-body {
+            padding: 0;
+        }
+
+        .modal-image {
+            width: 100%;
+            max-height: 70vh;
+            object-fit: contain;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .gallery-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .gallery-container {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+            }
+
+            .filter-buttons {
+                gap: 10px;
+            }
+
+            .filter-btn {
+                padding: 8px 20px;
+                font-size: 0.9rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .gallery-hero {
+                padding: 80px 0 40px;
+            }
+
+            .gallery-hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .gallery-container {
+                grid-template-columns: 1fr;
+            }
+
+            .category-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-book-open"></i> AL MOMIN ACADEMY
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Gallery Hero Section -->
+    <section class="gallery-hero">
+        <div class="container">
+            <h1><i class="fas fa-images"></i> School Gallery</h1>
+            <p>Capturing Memories, Celebrating Achievements</p>
+        </div>
+    </section>
+
+    <!-- Gallery Filter -->
+    <section class="gallery-filter">
+        <div class="container">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Events</button>
+                <button class="filter-btn" data-filter="academic">Academic</button>
+                <button class="filter-btn" data-filter="sports">Sports</button>
+                <button class="filter-btn" data-filter="cultural">Cultural</button>
+                <button class="filter-btn" data-filter="events">Special Events</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Gallery Section -->
+    <section class="gallery-section">
+        <div class="container">
+            <!-- Academic Events -->
+            <div class="event-category" data-category="academic">
+                <h2 class="category-title">Academic Excellence</h2>
+                <div class="gallery-container">
+                    <!-- Gallery Item 1 -->
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80">
+                        <img src="./img2.jpg" alt="Science Lab" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Science Laboratory</h3>
+                            <p class="gallery-date">March 15, 2024</p>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 2 -->
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80">
+                        <img src="./img4.jpg" alt="Library" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">School Library</h3>
+                            <p class="gallery-date">February 28, 2024</p>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 3 -->
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80">
+                        <img src="./img5.jpg" alt="Classroom" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Smart Classroom</h3>
+                            <p class="gallery-date">January 20, 2024</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sports Events -->
+            <div class="event-category" data-category="sports">
+                <h2 class="category-title">Sports & Athletics</h2>
+                <div class="gallery-container">
+                    <!-- Add sports gallery items here -->
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80">
+                        <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Basketball" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Basketball Tournament</h3>
+                            <p class="gallery-date">April 10, 2024</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cultural Events -->
+            <div class="event-category" data-category="cultural">
+                <h2 class="category-title">Cultural Activities</h2>
+                <div class="gallery-container">
+                    <!-- Add cultural gallery items here -->
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80">
+                        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Dance" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Annual Day Dance</h3>
+                            <p class="gallery-date">December 15, 2023</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Photos</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Events</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">Years</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number">1000+</div>
+                        <div class="stat-label">Memories</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5><i class="fas fa-graduation-cap"></i> Academy School</h5>
+                    <p>Delivering quality education and shaping tomorrow's leaders with integrity, innovation, and excellence.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Quick Links</h5>
+                    <p><a href="#home" class="text-white">Home</a></p>
+                    <p><a href="#gallery" class="text-white">Gallery</a></p>
+                    <p><a href="#about" class="text-white">About Us</a></p>
+                    <p><a href="#contact" class="text-white">Contact</a></p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Contact Information</h5>
+                    <p><i class="fas fa-phone"></i> +92 (300) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> info@academyschool.edu</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Karachi, Sindh, Pakistan</p>
+                </div>
+            </div>
+            <div class="footer-bottom text-center">
+                <p>&copy; 2024 Academy School. All rights reserved. | Designed for Excellence</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Image Modal -->
+    <div class="modal fade gallery-modal" id="imageModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Gallery Image</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img id="modalImage" src="" alt="" class="modal-image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const galleryCategories = document.querySelectorAll('.event-category');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+
+                    const filterValue = this.getAttribute('data-filter');
+
+                    galleryCategories.forEach(category => {
+                        if (filterValue === 'all' || category.getAttribute('data-category') === filterValue) {
+                            category.style.display = 'block';
+                        } else {
+                            category.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Modal image setup
+            const imageModal = document.getElementById('imageModal');
+            if (imageModal) {
+                imageModal.addEventListener('show.bs.modal', function(event) {
+                    const button = event.relatedTarget;
+                    const imageUrl = button.getAttribute('data-image');
+                    const modalImage = document.getElementById('modalImage');
+                    modalImage.src = imageUrl;
+                });
+            }
+
+            // Add loading animation
+            const images = document.querySelectorAll('.gallery-img');
+            images.forEach(img => {
+                img.addEventListener('load', function() {
+                    this.style.opacity = '1';
+                });
+                img.style.opacity = '0';
+                img.style.transition = 'opacity 0.3s ease';
+            });
+        });
+    </script>
+</body>
+
+</html>
