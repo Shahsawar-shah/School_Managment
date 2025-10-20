@@ -32,12 +32,24 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: var(--dark-text);
             background-color: var(--light-cream);
-            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><text x="500" y="500" font-family="Arial" font-size="800" font-weight="bold" text-anchor="middle" dy=".3em" fill="rgba(151,132,82,0.08)">✎</text></svg>');
-            background-attachment: fixed;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            background-image: url('./logo.png');
+            background-size: 250px;
             background-position: center;
             background-repeat: no-repeat;
-            background-size: 150%;
-            position: relative;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.08;
+            /* Watermark opacity */
+            z-index: -1;
+            pointer-events: none;
         }
 
         /* Navbar - Premium Design */
@@ -1515,15 +1527,19 @@
         }
 
 
+
+
+
+
         /* Secondary Navbar Styles */
+        /* ========== DESKTOP STYLES (Unchanged) ========== */
         .secondary-navbar {
             padding: 8px 0;
             border-bottom: 2px solid var(--gold);
             background: linear-gradient(135deg, var(--white) 0%, var(--light-cream) 100%) !important;
             backdrop-filter: blur(10px);
             position: relative;
-            /* z-index: 1031; */
-            /* Higher than main navbar (1030) */
+            z-index: 1031;
         }
 
         .secondary-navbar .nav-link {
@@ -1541,7 +1557,6 @@
             transform: translateY(-1px);
         }
 
-        /* Quick Links */
         .quick-link {
             background: linear-gradient(135deg, var(--gold), var(--brown));
             -webkit-background-clip: text;
@@ -1549,86 +1564,6 @@
             font-weight: 700 !important;
         }
 
-        /* Search Bar */
-        .search-container {
-            max-width: 200px;
-        }
-
-        .search-group {
-            border-radius: 25px;
-            overflow: hidden;
-            border: 2px solid var(--accent-grey);
-            transition: all 0.3s ease;
-        }
-
-        .search-group:focus-within {
-            border-color: var(--gold);
-            box-shadow: 0 0 0 0.2rem rgba(245, 186, 44, 0.25);
-        }
-
-        .search-input {
-            border: none;
-            background: transparent;
-            font-size: 0.9rem;
-            padding: 8px 15px;
-        }
-
-        .search-input:focus {
-            outline: none;
-            box-shadow: none;
-        }
-
-        .btn-search {
-            background: var(--gold);
-            border: none;
-            color: var(--dark-brown);
-            padding: 8px 15px;
-            transition: all 0.3s ease;
-        }
-
-        .btn-search:hover {
-            background: var(--brown);
-            color: var(--white);
-        }
-
-        /* Announcement Badge */
-        .announcement-badge {
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .announcement-badge .badge {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            font-size: 0.6rem;
-            padding: 3px 6px;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.1);
-            }
-
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        /* Language Selector */
-        .language-selector {
-            color: var(--dark-brown) !important;
-            font-weight: 700;
-        }
-
-        /* Social Links */
         .social-links {
             display: flex;
             gap: 5px;
@@ -1654,7 +1589,6 @@
             transform: translateY(-2px) scale(1.1);
         }
 
-        /* Dropdown Styles for Secondary Nav - FIXED Z-INDEX */
         .secondary-navbar .dropdown-menu {
             background: var(--white);
             border: none;
@@ -1662,371 +1596,254 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             border-top: 3px solid var(--gold);
             margin-top: 8px;
-            z-index: 1050 !important;
-            /* Higher than all other content */
-            position: absolute !important;
+            z-index: 1070 !important;
         }
 
-        .secondary-navbar .dropdown-item {
-            color: var(--dark-brown);
-            font-weight: 600;
-            padding: 10px 15px;
-            font-size: 0.85rem;
+        /* ========== MOBILE SIDEBAR STYLES ========== */
+        .mobile-sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
+            opacity: 0;
+            visibility: hidden;
             transition: all 0.3s ease;
+        }
+
+        .mobile-sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-sidebar {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 320px;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--white) 0%, var(--light-cream) 100%);
+            z-index: 9999;
+            transition: right 0.3s ease;
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-sidebar.active {
+            right: 0;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            background: linear-gradient(135deg, var(--dark-brown) 0%, var(--brown) 100%);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .sidebar-header h5 {
+            margin: 0;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .sidebar-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.3rem;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .sidebar-content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .sidebar-section {
+            margin-bottom: 25px;
+        }
+
+        .sidebar-title {
+            color: var(--dark-brown);
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--gold);
             display: flex;
             align-items: center;
         }
 
-        .secondary-navbar .dropdown-item:hover {
-            background: rgba(245, 186, 44, 0.1);
+        .sidebar-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .sidebar-link {
             color: var(--dark-brown);
-            padding-left: 20px;
+            text-decoration: none;
+            padding: 12px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid transparent;
         }
 
-        /* Ensure dropdowns appear above all content */
-        .nav-item.dropdown {
-            position: relative;
+        .sidebar-link:hover {
+            background: rgba(245, 186, 44, 0.1);
+            color: var(--gold);
+            border-color: var(--gold);
+            transform: translateX(5px);
         }
 
-        .dropdown-menu.show {
-            display: block;
-            position: absolute;
-            inset: 0px auto auto 0px;
-            margin: 0px;
-            transform: translate(0px, 38px);
+        .sidebar-social {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            padding: 10px 0;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .secondary-navbar .container {
-                flex-direction: column;
-                gap: 10px;
+        .sidebar-social-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--accent-grey);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-brown);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .sidebar-social-icon:hover {
+            background: var(--gold);
+            color: var(--dark-brown);
+            transform: translateY(-3px);
+        }
+
+        /* ========== RESPONSIVE BREAKPOINTS ========== */
+
+        /* Desktop (992px and up) - Show desktop, hide mobile */
+        @media (min-width: 992px) {
+            .secondary-toggler {
+                display: none !important;
             }
 
-            .secondary-navbar .navbar-nav {
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 10px;
+            .desktop-nav-content {
+                display: flex !important;
+                width: 100%;
             }
 
-            .search-container {
-                max-width: 100%;
-                order: 3;
-            }
-
-            .social-links {
-                order: 4;
-            }
-
-            .announcement-badge span:not(.badge) {
-                display: none;
-            }
-
-            /* Mobile dropdown positioning */
-            .secondary-navbar .dropdown-menu {
-                position: fixed !important;
-                z-index: 1060 !important;
+            .mobile-sidebar,
+            .mobile-sidebar-overlay {
+                display: none !important;
             }
         }
 
-        @media (max-width: 576px) {
+        /* Tablet & Mobile (991px and down) - Show mobile, hide desktop */
+        @media (max-width: 991.98px) {
+            .secondary-toggler {
+                display: block !important;
+                margin-left: auto;
+                border: 1px solid var(--gold);
+                padding: 4px 8px;
+            }
+
+            .desktop-nav-content {
+                display: none !important;
+            }
+
             .secondary-navbar {
                 padding: 10px 0;
             }
+        }
 
-            .secondary-navbar .nav-link {
-                font-size: 0.8rem;
-                padding: 6px 8px !important;
+        /* Small Mobile (575px and down) */
+        @media (max-width: 575.98px) {
+            .mobile-sidebar {
+                width: 280px;
             }
 
-            .search-input {
-                font-size: 0.8rem;
-                padding: 6px 12px;
+            .sidebar-content {
+                padding: 15px;
             }
 
-            .btn-search {
-                padding: 6px 12px;
+            .sidebar-header {
+                padding: 15px;
+            }
+
+            .sidebar-link {
+                padding: 10px 12px;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Extra Small Mobile (375px and down) */
+        @media (max-width: 375px) {
+            .mobile-sidebar {
+                width: 100%;
             }
         }
 
         /* Dark Mode Support */
         @media (prefers-color-scheme: dark) {
-            .secondary-navbar {
-                background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%) !important;
+            .mobile-sidebar {
+                background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%);
             }
 
-            .secondary-navbar .nav-link {
-                color: #e0e0e0 !important;
-            }
-
-            .search-group {
-                border-color: #555;
-                background: #2d2d2d;
-            }
-
-            .search-input {
+            .sidebar-title,
+            .sidebar-link {
                 color: #e0e0e0;
-                background: transparent;
             }
 
-            .social-icon {
+            .sidebar-link:hover {
+                background: rgba(245, 186, 44, 0.15);
+            }
+
+            .sidebar-social-icon {
                 background: #555;
-                color: #e0e0e0 !important;
+                color: #e0e0e0;
             }
         }
 
-        /* Fix for dropdown overlap issues */
-        body {
-            position: relative;
+        /* Smooth scrolling */
+        .sidebar-content::-webkit-scrollbar {
+            width: 4px;
         }
 
-        .modal,
-        .dropdown-menu {
-            z-index: 1060;
-            /* Standard Bootstrap z-index for modals */
+        .sidebar-content::-webkit-scrollbar-track {
+            background: transparent;
         }
 
-        .secondary-navbar .dropdown-menu {
-            z-index: 1070 !important;
-            /* Higher than modals */
+        .sidebar-content::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 10px;
         }
 
 
-        .chatbot-container {
-            width: 100%;
-            max-width: 400px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-        }
 
-        .chat-header {
-            background: #075e54;
-            color: white;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
 
-        .chat-header img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 2px solid white;
-        }
-
-        .chat-header-info h3 {
-            font-size: 18px;
-            margin-bottom: 5px;
-        }
-
-        .chat-header-info p {
-            font-size: 13px;
-            opacity: 0.8;
-        }
-
-        .chat-messages {
-            height: 400px;
-            padding: 20px;
-            overflow-y: auto;
-            background: #e5ddd5;
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23000000' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
-        }
-
-        .message {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: flex-end;
-            max-width: 80%;
-        }
-
-        .message.received {
-            align-self: flex-start;
-        }
-
-        .message.sent {
-            align-self: flex-end;
-            margin-left: auto;
-        }
-
-        .message-bubble {
-            padding: 12px 16px;
-            border-radius: 18px;
-            position: relative;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .received .message-bubble {
-            background: white;
-            border-bottom-left-radius: 5px;
-        }
-
-        .sent .message-bubble {
-            background: #dcf8c6;
-            border-bottom-right-radius: 5px;
-            color: #303030;
-        }
-
-        .message-time {
-            font-size: 11px;
-            color: #999;
-            margin-top: 5px;
-            text-align: right;
-        }
-
-        .chat-input {
-            display: flex;
-            padding: 15px;
-            background: #f0f0f0;
-            gap: 10px;
-        }
-
-        .chat-input input {
-            flex: 1;
-            padding: 12px 15px;
-            border: none;
-            border-radius: 25px;
-            outline: none;
-            font-size: 15px;
-        }
-
-        .send-button {
-            background: #25d366;
-            color: white;
-            border: none;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .send-button:hover {
-            background: #128c7e;
-            transform: scale(1.05);
-        }
-
-        .quick-replies {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            padding: 10px 20px;
-            background: #f0f0f0;
-            border-top: 1px solid #ddd;
-        }
-
-        .quick-reply {
-            background: white;
-            border: 1px solid #ddd;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .quick-reply:hover {
-            background: #e9e9e9;
-        }
-
-        .typing-indicator {
-            display: flex;
-            padding: 10px 15px;
-            align-items: center;
-        }
-
-        .typing-dots {
-            display: flex;
-            gap: 4px;
-            background: white;
-            padding: 12px 16px;
-            border-radius: 18px;
-            border-bottom-left-radius: 5px;
-        }
-
-        .typing-dots span {
-            width: 8px;
-            height: 8px;
-            background: #999;
-            border-radius: 50%;
-            animation: typing 1.4s infinite ease-in-out;
-        }
-
-        .typing-dots span:nth-child(1) {
-            animation-delay: -0.32s;
-        }
-
-        .typing-dots span:nth-child(2) {
-            animation-delay: -0.16s;
-        }
-
-        @keyframes typing {
-
-            0%,
-            80%,
-            100% {
-                transform: scale(0.8);
-                opacity: 0.5;
-            }
-
-            40% {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        .floating-button {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 70px;
-            height: 70px;
-            background: #25d366;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            transition: all 0.3s;
-            z-index: 1000;
-        }
-
-        .floating-button:hover {
-            transform: scale(1.1);
-            background: #128c7e;
-        }
-
-        .floating-button i {
-            color: white;
-            font-size: 30px;
-        }
-
-        .notification {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background: #ff3b30;
-            color: white;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        .hidden {
-            display: none;
-        }
 
 
 
@@ -2353,6 +2170,11 @@
             }
         }
 
+        .modal-body {
+            position: relative;
+            z-index: 99991 !important;
+        }
+
 
 
 
@@ -2361,11 +2183,11 @@
         /* MORE AGGRESSIVE FIX */
         .secondary-navbar {
             position: relative;
-            z-index: 9999 !important;
+            z-index: 1000 !important;
         }
 
         .secondary-navbar .dropdown-menu {
-            z-index: 10000 !important;
+            z-index: 1000 !important;
         }
 
         .hero {
@@ -2373,6 +2195,20 @@
             z-index: 1;
             /* Add isolation to create new stacking context */
             isolation: isolate;
+        }
+
+
+        .Logo {
+            margin-top: 2px;
+            width: 40px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        /* its for hero section */
+        .herologo {
+            width: 70px;
+            height: 60px;
         }
     </style>
 </head>
@@ -2382,7 +2218,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand" href="#home">
-                <i class="fas fa-book-open"></i> AL MOMIN ACADEMY
+                <img class="Logo" src="./logo.png" alt="logoimage"> AMFA
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -2418,7 +2254,7 @@
 
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="#gallery">GALLERY</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./gallery.html">GALLERY</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
                             ABOUT
@@ -2453,92 +2289,188 @@
 
 
 
+
     <!-- SECONDARY NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm secondary-navbar">
         <div class="container">
-            <!-- Quick Links -->
-            <div class="navbar-nav me-auto">
-                <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle quick-link" href="#" role="button" data-bs-toggle="dropdown">
-                        <i class="fas fa-bolt me-1"></i>Quick Links
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#"><i class="fas fa-calendar-alt me-2"></i>Academic
-                                Calendar</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="fas fa-download me-2"></i>Downloads</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="fas fa-newspaper me-2"></i>News & Events</a>
-                        </li>
-                        <li><a class="dropdown-item" href="#"><i class="fas fa-trophy me-2"></i>Achievements</a></li>
-                    </ul>
-                </div>
-            </div>
+            <!-- Mobile Toggle Button -->
+            <button class="navbar-toggler secondary-toggler" type="button" id="secondaryNavToggler">
+                <span class="navbar-toggler-icon  "></span>
+            </button>
 
-            <!-- Right Side Items -->
-            <div class="navbar-nav ms-auto align-items-center">
-                <!-- Announcement Badge -->
-                <div class="nav-item me-3">
-                    <a class="nav-link announcement-badge" href="#">
-                        <i class="fas fa-bullhorn text-warning me-1"></i>
-                        <!-- <span class="badge bg-danger">New</span> -->
-                        <span class="d-none d-md-inline">Announcements</span>
-                    </a>
-                </div>
-                <div class="nav-item dropdown me-3">
-                    <a class="nav-link language-selector" href="#" role="button" data-bs-toggle="dropdown">
-                        Policy
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Admission Policy </a></li>
-                        <li><a class="dropdown-item" href="#">Fee Policy </a></li>
-                        <li><a class="dropdown-item" href="#"> Child Protection Policy</a></li>
-                        <li><a class="dropdown-item" href="#">School Policy </a></li>
-                    </ul>
-                </div>
-                <div class="nav-item dropdown me-3">
-                    <a class="nav-link language-selector" href="#" role="button" data-bs-toggle="dropdown">
-                        Student Result
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Chose Grade </a></li>
-                        <li><a class="dropdown-item" href="#">Chose year </a></li>
-                        <li><a class="dropdown-item" href="#">Roll number</a></li>
-                        <li><a class="dropdown-item" href="#"> Search option for all </a></li>
-                    </ul>
-                </div>
-
-                <!-- Search Bar
-                <div class="nav-item search-container me-3">
-                    <div class="input-group search-group">
-                        <input type="text" class="form-control search-input" placeholder="Search...">
-                        <button class="btn btn-search" type="button">
-                            <i class="fas fa-search"></i>
-                        </button>
+            <!-- Desktop Content - Same as before -->
+            <div class="desktop-nav-content">
+                <div class="navbar-nav me-auto">
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle quick-link" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-bolt me-1"></i>Quick Links
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-calendar-alt me-2"></i>Academic
+                                    Calendar</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-download me-2"></i>Downloads</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-newspaper me-2"></i>News & Events</a>
+                            </li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-trophy me-2"></i>Achievements</a>
+                            </li>
+                        </ul>
                     </div>
-                </div> -->
-
-                <!-- Language Selector -->
-                <div class="nav-item dropdown me-3">
-                    <a class="nav-link language-selector" href="#" role="button" data-bs-toggle="dropdown">
-                        <i class="fas fa-globe me-1"></i>EN
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#"><i class="fas fa-language me-2"></i>English</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="fas fa-language me-2"></i>Urdu</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="fas fa-language me-2"></i>Arabic</a></li>
-                    </ul>
                 </div>
 
-                <!-- Social Links -->
-                <div class="nav-item social-links">
-                    <a class="nav-link social-icon" href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a class="nav-link social-icon" href="#"><i class="fab fa-twitter"></i></a>
-                    <a class="nav-link social-icon" href="#"><i class="fab fa-instagram"></i></a>
-                    <a class="nav-link social-icon" href="#"><i class="fab fa-youtube"></i></a>
+                <!-- Right Side Items -->
+                <div class="navbar-nav ms-auto align-items-center">
+                    <!-- Announcement Badge -->
+                    <div class="nav-item me-3">
+                        <a class="nav-link announcement-badge" href="#">
+                            <i class="fas fa-bullhorn text-warning me-1"></i>
+                            <span class="d-none d-md-inline">Announcements</span>
+                        </a>
+                    </div>
+
+                    <!-- Policy Dropdown -->
+                    <div class="nav-item dropdown me-3">
+                        <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown">
+                            Policy
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Admission Policy</a></li>
+                            <li><a class="dropdown-item" href="#">Fee Policy</a></li>
+                            <li><a class="dropdown-item" href="#">Child Protection Policy</a></li>
+                            <li><a class="dropdown-item" href="#">School Policy</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Student Result Dropdown -->
+                    <div class="nav-item dropdown me-3">
+                        <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown">
+                            Student Result
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Choose Grade</a></li>
+                            <li><a class="dropdown-item" href="#">Choose Year</a></li>
+                            <li><a class="dropdown-item" href="#">Roll Number</a></li>
+                            <li><a class="dropdown-item" href="#">Search Results</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Language Selector -->
+                    <div class="nav-item dropdown me-3">
+                        <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-globe me-1"></i>EN
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">English</a></li>
+                            <li><a class="dropdown-item" href="#">Urdu</a></li>
+                            <li><a class="dropdown-item" href="#">Arabic</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="nav-item social-links">
+                        <a class="nav-link social-icon" href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a class="nav-link social-icon" href="#"><i class="fab fa-twitter"></i></a>
+                        <a class="nav-link social-icon" href="#"><i class="fab fa-instagram"></i></a>
+                        <a class="nav-link social-icon" href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
     </nav>
 
+    <!-- Mobile Sidebar Overlay -->
+    <div class="mobile-sidebar-overlay" id="mobileOverlay"></div>
+
+    <!-- Mobile Sidebar -->
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <div class="sidebar-header">
+            <h5><i class="fas fa-th-large me-2"></i>Quick Menu</h5>
+            <button class="sidebar-close" id="sidebarClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="sidebar-content">
+            <!-- Quick Links -->
+            <div class="sidebar-section">
+                <h6 class="sidebar-title">
+                    <i class="fas fa-bolt me-2"></i>Quick Links
+                </h6>
+                <div class="sidebar-links">
+                    <a href="#" class="sidebar-link">
+                        <i class="fas fa-calendar-alt me-2"></i>Academic Calendar
+                    </a>
+                    <a href="#" class="sidebar-link">
+                        <i class="fas fa-download me-2"></i>Downloads
+                    </a>
+                    <a href="#" class="sidebar-link">
+                        <i class="fas fa-newspaper me-2"></i>News & Events
+                    </a>
+                    <a href="#" class="sidebar-link">
+                        <i class="fas fa-trophy me-2"></i>Achievements
+                    </a>
+                </div>
+            </div>
+
+            <!-- Policies -->
+            <div class="sidebar-section">
+                <h6 class="sidebar-title">
+                    <i class="fas fa-file-contract me-2"></i>Policies
+                </h6>
+                <div class="sidebar-links">
+                    <a href="#" class="sidebar-link">Admission Policy</a>
+                    <a href="#" class="sidebar-link">Fee Policy</a>
+                    <a href="#" class="sidebar-link">Child Protection Policy</a>
+                    <a href="#" class="sidebar-link">School Policy</a>
+                </div>
+            </div>
+
+            <!-- Student Results -->
+            <div class="sidebar-section">
+                <h6 class="sidebar-title">
+                    <i class="fas fa-chart-line me-2"></i>Student Results
+                </h6>
+                <div class="sidebar-links">
+                    <a href="#" class="sidebar-link">Choose Grade</a>
+                    <a href="#" class="sidebar-link">Choose Year</a>
+                    <a href="#" class="sidebar-link">Roll Number</a>
+                    <a href="#" class="sidebar-link">Search Results</a>
+                </div>
+            </div>
+
+            <!-- Language -->
+            <div class="sidebar-section">
+                <h6 class="sidebar-title">
+                    <i class="fas fa-globe me-2"></i>Language
+                </h6>
+                <div class="sidebar-links">
+                    <a href="#" class="sidebar-link">English</a>
+                    <a href="#" class="sidebar-link">Urdu</a>
+                    <a href="#" class="sidebar-link">Arabic</a>
+                </div>
+            </div>
+
+            <!-- Social Links -->
+            <div class="sidebar-section">
+                <h6 class="sidebar-title">
+                    <i class="fas fa-share-alt me-2"></i>Follow Us
+                </h6>
+                <div class="sidebar-social">
+                    <a href="#" class="sidebar-social-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="sidebar-social-icon">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="sidebar-social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="sidebar-social-icon">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -2552,8 +2484,9 @@
     <section class="hero" id="home">
         <div class="hero-content">
             <div class="container text-center hero-text">
-                <h1><i class="fas fa-graduation-cap"></i> Welcome to Al-Momin Fusion Academy</h1>
-                <p>Empowering young minds through holistic education, fostering academic excellence, <br> creativity, and character development.</p>
+                <h1><img class="herologo" src="./logo.png" alt=""> Welcome to Al-Momin Fusion Academy</h1>
+                <p>Empowering young minds through holistic education, fostering academic excellence, <br> creativity,
+                    and character development.</p>
                 <button class="btn btn-hero-primary btn-clickable" data-bs-toggle="modal"
                     data-bs-target="#registerModal">
                     <i class="fas fa-clipboard-list"></i> REGISTER NOW
@@ -2605,20 +2538,46 @@
                     <div class="card-item">
                         <i class="fas fa-eye"></i>
                         <h4>Our Vision</h4>
-                        <p>To be a beacon of academic excellence and character development, fostering confident,
-                            creative, and compassionate leaders equipped to excel in a dynamic global community and make
-                            meaningful contributions to society.</p>
+                        <p>At Al-Momin Fusion Academy, our vision is to empower young minds through holistic
+                            education—nurturing academic excellence, creativity, and strong moral character.
+                            We believe in shaping future leaders who are knowledgeable, confident, compassionate, and
+                            spiritually grounded. Our approach blends modern learning with Islamic values, ensuring
+                            students grow intellectually, emotionally, and ethically to make a positive difference in
+                            the world.</p>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="card-item">
                         <i class="fas fa-bullseye"></i>
                         <h4>Our Goals</h4>
-                        <p>✓ Excellence in academic achievement<br>
-                            ✓ Leadership & critical thinking<br>
-                            ✓ Creativity & innovation<br>
-                            ✓ Moral & ethical values<br>
-                            ✓ Global readiness</p>
+                        <p>✓
+                            Academic Excellence: Deliver high-quality education with a solid foundation in core
+                            subjects.
+
+                            Holistic Development: Offer a balanced program including sports, arts, computer education,
+                            and life skills.
+
+                            Creative Expression: Encourage writing, public speaking, and artistic activities to boost
+                            confidence and self-expression.
+
+                            Character Building: Instill moral values, empathy, and a sense of social responsibility.
+
+                            Religious Education: Provide Islamic teachings that promote spiritual understanding and
+                            moral strength.
+
+                            Life Skills: Equip students with problem-solving, critical thinking, and teamwork abilities.
+
+                            Computer Literacy: Enhance digital knowledge, coding, and 21st-century technology skills.
+
+                            Sports and Physical Education: Promote fitness, teamwork, and discipline through physical
+                            activities.
+
+                            Community Engagement: Inspire participation in community service and environmental care.
+
+                            Parental Involvement: Build strong partnerships with parents for continuous student growth.
+
+                            By achieving these goals, Al-Momin Fusion Academy aims to produce well-rounded, innovative,
+                            and responsible individuals who contribute positively to society and lead with purpose.</p>
                     </div>
                 </div>
             </div>
@@ -2908,8 +2867,8 @@
             <div class="row">
                 <div class="col-md-4 mb-3">
                     <h5><i class="fas fa-graduation-cap"></i> Academy School</h5>
-                    <p>Delivering quality education and shaping tomorrow's leaders with integrity, innovation, and
-                        excellence.</p>
+                    <p>Empowering young minds through holistic education, fostering academic excellence, creativity, and
+                        character development.</p>
                 </div>
                 <div class="col-md-4 mb-3">
                     <h5>Quick Links</h5>
@@ -2920,9 +2879,9 @@
                 </div>
                 <div class="col-md-4 mb-3">
                     <h5>Contact Information</h5>
-                    <p><i class="fas fa-phone"></i> +92 (300) 123-4567</p>
-                    <p><i class="fas fa-envelope"></i> info@academyschool.edu</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Karachi, Sindh, Pakistan</p>
+                    <p><i class="fas fa-phone"></i> +92 3325522774 | 00971561349042</p>
+                    <p><i class="fas fa-envelope"></i> momin.fusion_academy@outlook.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Karachi-Muslim Abad Colony UC-2</p>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -3085,68 +3044,68 @@
 
 
     <!-- chatbot  -->
-<!-- WhatsApp Chatbot - Add this anywhere in your body -->
-<div class="floating-chat-container">
-    <!-- Chat Window -->
-    <div class="chat-window" id="chatWindow">
-        <!-- Close Button -->
-        <button class="close-button" id="closeButton">
-            <i class="fas fa-times"></i>
-        </button>
-        
-        <!-- Chat Header -->
-        <div class="chat-header">
-            <img src="https://ui-avatars.com/api/?name=School+Assistant&background=128C7E&color=fff" alt="Bot Avatar">
-            <div class="chat-header-info">
-                <h3>School Assistant</h3>
-                <p>Online • Typically replies instantly</p>
-            </div>
-        </div>
-
-        <!-- Chat Messages -->
-        <div class="chat-messages" id="chatMessages">
-            <!-- Initial bot message -->
-            <div class="message received">
-                <div class="message-bubble">
-                    <p>Hello! I'm your school assistant. How can I help you today?</p>
-                    <div class="message-time" id="initialTime">10:00 AM</div>
-                </div>
-            </div>
-
-            <!-- Typing indicator (hidden by default) -->
-            <div class="typing-indicator hidden" id="typingIndicator">
-                <div class="typing-dots">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Quick Reply Buttons -->
-        <div class="quick-replies">
-            <div class="quick-reply" data-message="Admission process">Admission Process</div>
-            <div class="quick-reply" data-message="Fee structure">Fee Structure</div>
-            <div class="quick-reply" data-message="School timings">School Timings</div>
-            <div class="quick-reply" data-message="Contact information">Contact Info</div>
-        </div>
-
-        <!-- Chat Input -->
-        <div class="chat-input">
-            <input type="text" placeholder="Type a message..." id="messageInput">
-            <button class="send-button" id="sendButton">
-                <i class="fas fa-paper-plane"></i>
+    <!-- WhatsApp Chatbot - Add this anywhere in your body -->
+    <div class="floating-chat-container">
+        <!-- Chat Window -->
+        <div class="chat-window" id="chatWindow">
+            <!-- Close Button -->
+            <button class="close-button" id="closeButton">
+                <i class="fas fa-times"></i>
             </button>
+
+            <!-- Chat Header -->
+            <div class="chat-header">
+                <img src="./logo.png" alt="Bot Avatar">
+                <div class="chat-header-info">
+                    <h3>School Assistant</h3>
+                    <p>Online • Typically replies instantly</p>
+                </div>
+            </div>
+
+            <!-- Chat Messages -->
+            <div class="chat-messages" id="chatMessages">
+                <!-- Initial bot message -->
+                <div class="message received">
+                    <div class="message-bubble">
+                        <p>Hello! I'm your school assistant. How can I help you today?</p>
+                        <div class="message-time" id="initialTime">10:00 AM</div>
+                    </div>
+                </div>
+
+                <!-- Typing indicator (hidden by default) -->
+                <div class="typing-indicator hidden" id="typingIndicator">
+                    <div class="typing-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Reply Buttons -->
+            <div class="quick-replies">
+                <div class="quick-reply" data-message="Admission process">Admission Process</div>
+                <div class="quick-reply" data-message="Fee structure">Fee Structure</div>
+                <div class="quick-reply" data-message="School timings">School Timings</div>
+                <div class="quick-reply" data-message="Contact information">Contact Info</div>
+            </div>
+
+            <!-- Chat Input -->
+            <div class="chat-input">
+                <input type="text" placeholder="Type a message..." id="messageInput">
+                <button class="send-button" id="sendButton">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Floating Button -->
+        <div class="floating-button" id="floatingButton">
+            <i class="fab fa-whatsapp"></i>
+            <div class="notification">1</div>
         </div>
     </div>
 
-    <!-- Floating Button -->
-    <div class="floating-button" id="floatingButton">
-        <i class="fab fa-whatsapp"></i>
-        <div class="notification">1</div>
-    </div>
-</div>
-    
 
 
 
@@ -3399,6 +3358,54 @@
                 }
             }
         });
+
+
+
+
+
+        // secondar navbar
+        document.addEventListener('DOMContentLoaded', function () {
+            const secondaryToggler = document.getElementById('secondaryNavToggler');
+            const mobileSidebar = document.getElementById('mobileSidebar');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+            const sidebarClose = document.getElementById('sidebarClose');
+
+            // Open sidebar
+            if (secondaryToggler) {
+                secondaryToggler.addEventListener('click', function () {
+                    mobileSidebar.classList.add('active');
+                    mobileOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            }
+
+            // Close sidebar
+            function closeSidebar() {
+                mobileSidebar.classList.remove('active');
+                mobileOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            if (sidebarClose) {
+                sidebarClose.addEventListener('click', closeSidebar);
+            }
+
+            if (mobileOverlay) {
+                mobileOverlay.addEventListener('click', closeSidebar);
+            }
+
+            // Close sidebar when clicking on links
+            document.querySelectorAll('.sidebar-link').forEach(link => {
+                link.addEventListener('click', closeSidebar);
+            });
+
+            // Close sidebar with Escape key
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && mobileSidebar.classList.contains('active')) {
+                    closeSidebar();
+                }
+            });
+        }); 
     </script>
 </body>
 
