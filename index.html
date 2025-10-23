@@ -8,6 +8,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
+        /* ===== CSS VARIABLES & GLOBAL STYLES ===== */
         :root {
             --gold: #F5BA2C;
             --brown: #978452;
@@ -22,6 +23,8 @@
         * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            /* Added for better box model */
         }
 
         html {
@@ -33,8 +36,11 @@
             color: var(--dark-text);
             background-color: var(--light-cream);
             position: relative;
+            line-height: 1.6;
+            /* Improved readability */
         }
 
+        /* Watermark Background */
         body::before {
             content: '';
             background-image: url('./logo.png');
@@ -47,12 +53,11 @@
             width: 100%;
             height: 100%;
             opacity: 0.08;
-            /* Watermark opacity */
             z-index: -1;
             pointer-events: none;
         }
 
-        /* Navbar - Premium Design */
+        /* ===== MAIN NAVBAR STYLES ===== */
         .navbar {
             background: linear-gradient(135deg, var(--dark-brown) 0%, var(--brown) 50%, var(--gold) 100%);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
@@ -113,7 +118,7 @@
             background: var(--gold);
             color: var(--dark-brown);
             border: none;
-            padding: 8px 18px;
+            padding: 4px 18px;
             margin-left: 8px;
             border-radius: 25px;
             font-weight: 700;
@@ -132,13 +137,15 @@
             box-shadow: 0 6px 15px rgba(245, 186, 44, 0.4);
         }
 
-        /* Hero Section - Stunning Design */
+        /* ===== HERO SECTION - ENHANCED DESIGN ===== */
         .hero {
             background: linear-gradient(135deg, var(--dark-brown) 0%, var(--brown) 35%, var(--gold) 100%);
             color: var(--white);
-            padding: 80px 0;
+            padding: 100px 0;
+            /* Increased padding */
             text-align: center;
-            min-height: 450px;
+            min-height: 500px;
+            /* Increased height */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -157,18 +164,35 @@
             bottom: 0;
             background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></svg>');
             opacity: 0.1;
+            animation: float 20s infinite linear;
+            /* Added animation */
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: sparkle 15s infinite linear;
+            /* Added sparkle effect */
+            pointer-events: none;
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
-            animation: fadeInUp 0.8s ease;
+            animation: fadeInUp 1s ease-out;
+            /* Enhanced animation */
         }
 
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(50px);
             }
 
             to {
@@ -177,62 +201,184 @@
             }
         }
 
-        .hero h1 {
-            font-size: 2.8rem;
+        @keyframes float {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+
+            100% {
+                transform: translateY(0px) rotate(360deg);
+            }
+        }
+
+        @keyframes sparkle {
+            0% {
+                transform: translateX(0) translateY(0);
+            }
+
+            100% {
+                transform: translateX(-50px) translateY(-50px);
+            }
+        }
+
+        /* Hero Text Styling */
+        .hero-text h1 {
+            font-size: 3.5rem;
+            /* Increased size */
             font-weight: 800;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             letter-spacing: -0.5px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            animation: textGlow 3s ease-in-out infinite alternate;
+            /* Added text glow */
         }
 
-        .hero p {
-            font-size: 1.15rem;
-            margin-bottom: 30px;
-            opacity: 0.98;
+        @keyframes textGlow {
+            from {
+                text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            }
+
+            to {
+                text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.5), 0 0 20px rgba(245, 186, 44, 0.4);
+            }
+        }
+
+        .herologo {
+            width: 80px;
+            height: 70px;
+            margin-right: 15px;
+            vertical-align: middle;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+            animation: logoBounce 2s ease-in-out infinite;
+            /* Added bounce animation */
+        }
+
+        @keyframes logoBounce {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+
+            50% {
+                transform: translateY(-10px) scale(1.05);
+            }
+        }
+
+        .hero-text p:first-of-type {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-style: italic;
+            font-weight: 600;
+            color: var(--gold);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            animation: slideInLeft 1s ease-out 0.5s both;
+            /* Staggered animation */
+        }
+
+        .hero-text p:last-of-type {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
             font-weight: 500;
-            letter-spacing: 0.3px;
+            line-height: 1.6;
+            animation: slideInRight 1s ease-out 0.7s both;
+            /* Staggered animation */
         }
 
-        .hero .btn {
-            padding: 12px 28px;
-            font-size: 1rem;
-            font-weight: 700;
-            margin: 0 8px;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
 
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Hero Buttons - Enhanced */
+        .hero .btn {
+            padding: 15px 35px;
+            /* Increased padding */
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 0 12px;
+            border-radius: 30px;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .hero .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+            z-index: -1;
+        }
+
+        .hero .btn:hover::before {
+            left: 100%;
         }
 
         .btn-hero-primary {
             background-color: var(--gold);
             border: none;
             color: var(--dark-brown);
-            box-shadow: 0 6px 20px rgba(245, 186, 44, 0.4);
+            box-shadow: 0 8px 25px rgba(245, 186, 44, 0.5);
+            animation: fadeInUp 1s ease-out 0.9s both;
         }
 
         .btn-hero-primary:hover {
             background-color: var(--white);
             color: var(--dark-brown);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(245, 186, 44, 0.5);
+            transform: translateY(-5px) scale(1.05);
+            /* Enhanced hover effect */
+            box-shadow: 0 15px 35px rgba(245, 186, 44, 0.7);
         }
 
         .btn-hero-secondary {
             background-color: transparent;
-            border: 2.5px solid var(--gold);
+            border: 3px solid var(--gold);
             color: var(--gold);
+            animation: fadeInUp 1s ease-out 1.1s both;
         }
 
         .btn-hero-secondary:hover {
             background-color: var(--gold);
             color: var(--dark-brown);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(245, 186, 44, 0.4);
+            transform: translateY(-5px) scale(1.05);
+            /* Enhanced hover effect */
+            box-shadow: 0 15px 35px rgba(245, 186, 44, 0.5);
+            border-color: var(--gold);
         }
 
-        /* Sections */
+        /* ===== SECTION COMMON STYLES ===== */
         .section {
             padding: 60px 0;
             position: relative;
@@ -262,7 +408,7 @@
             border-radius: 2px;
         }
 
-        /* Principal Message */
+        /* ===== PRINCIPAL SECTION ===== */
         .principal-section {
             background: linear-gradient(180deg, var(--light-cream) 0%, rgba(245, 186, 44, 0.08) 100%);
             position: relative;
@@ -295,6 +441,7 @@
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
         }
 
+        /* Principal Image - Circular Style (UPDATED) */
         .principal-image {
             width: 110px;
             height: 110px;
@@ -304,10 +451,24 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-            color: var(--white);
             box-shadow: 0 6px 20px rgba(151, 132, 82, 0.3);
             border: 3px solid var(--gold);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .principal-image .adminimage {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Ensures proper image fitting */
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .principal-image:hover .adminimage {
+            transform: scale(1.05);
+            /* Hover effect for image */
         }
 
         .principal-card h3 {
@@ -332,9 +493,11 @@
             font-size: 0.98rem;
             line-height: 1.8;
             font-style: italic;
+            text-align: justify;
+            /* Improved text alignment */
         }
 
-        /* Vision & Goals */
+        /* ===== VISION & GOALS SECTION ===== */
         .vision-goals {
             background: var(--white);
         }
@@ -402,7 +565,7 @@
             z-index: 1;
         }
 
-        /* People Section */
+        /* ===== PEOPLE SECTION (Teachers & Students) ===== */
         .people-section {
             background: linear-gradient(180deg, var(--light-cream) 0%, rgba(245, 186, 44, 0.05) 100%);
         }
@@ -470,7 +633,7 @@
             letter-spacing: 0.3px;
         }
 
-        /* Courses Section */
+        /* ===== COURSES SECTION ===== */
         .courses-section {
             background: var(--white);
         }
@@ -530,7 +693,7 @@
             font-weight: 600;
         }
 
-        /* Gallery Section */
+        /* ===== GALLERY SECTION ===== */
         .gallery-section {
             background: linear-gradient(180deg, var(--light-cream) 0%, rgba(245, 186, 44, 0.05) 100%);
         }
@@ -561,7 +724,7 @@
             box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
         }
 
-        /* Contact Section */
+        /* ===== CONTACT SECTION ===== */
         .contact-section {
             background: var(--white);
         }
@@ -591,7 +754,7 @@
             width: 20px;
         }
 
-        /* Vacancy Section */
+        /* ===== VACANCY SECTION ===== */
         .vacancy-section {
             background: linear-gradient(180deg, var(--light-cream) 0%, rgba(245, 186, 44, 0.05) 100%);
         }
@@ -627,7 +790,7 @@
             font-weight: 600;
         }
 
-        /* Footer */
+        /* ===== FOOTER SECTION ===== */
         .footer {
             background: linear-gradient(135deg, var(--dark-brown) 0%, var(--brown) 50%, rgba(245, 186, 44, 0.9) 100%);
             color: var(--white);
@@ -672,7 +835,7 @@
             opacity: 0.9;
         }
 
-        /* Modal Styling */
+        /* ===== MODAL STYLES ===== */
         .modal-content {
             border: none;
             border-radius: 12px;
@@ -731,7 +894,7 @@
             color: var(--white);
         }
 
-        /* Back to Top Button */
+        /* ===== BACK TO TOP BUTTON ===== */
         .back-to-top {
             position: fixed;
             bottom: 30px;
@@ -764,18 +927,47 @@
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
         }
 
-        /* Responsive CSS for School Management Website */
+        /* ===== LOGO & IMAGE STYLES ===== */
+        .Logo {
+            margin-top: 2px;
+            width: 40px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .adminimage {
+            width: 100%;
+            /* Fixed: Now properly covers container */
+            height: 100%;
+            object-fit: cover;
+            /* Ensures proper image fitting */
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
 
         /* Extra small devices (phones, 576px and down) */
         @media (max-width: 576px) {
-            .hero h1 {
-                font-size: 1.8rem;
-                margin-bottom: 10px;
+            .hero {
+                padding: 60px 0;
+                min-height: 350px;
             }
 
-            .hero p {
-                font-size: 1rem;
-                margin-bottom: 20px;
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .herologo {
+                width: 50px;
+                height: 45px;
+                margin-right: 8px;
+            }
+
+            .hero-text p:first-of-type {
+                font-size: 1.1rem;
+            }
+
+            .hero-text p:last-of-type {
+                font-size: 0.95rem;
             }
 
             .hero .btn {
@@ -795,42 +987,18 @@
                 margin-bottom: 30px;
             }
 
-            .navbar-brand {
-                font-size: 1.1rem;
-                margin-right: 0;
-            }
-
-            .nav-link {
-                margin: 0 5px;
-                font-size: 0.85rem;
-                text-align: center;
-            }
-
-            .btn-auth {
-                padding: 6px 12px;
-                font-size: 0.8rem;
-                margin: 5px;
-                width: 100%;
-                text-align: center;
-            }
-
             .principal-card {
-                padding: 25px 20px;
+                padding: 20px 15px;
             }
 
             .principal-image {
-                width: 90px;
-                height: 90px;
-                font-size: 2.2rem;
+                width: 80px;
+                height: 80px;
+                border-width: 2px;
             }
 
             .card-item {
                 padding: 20px;
-                margin-bottom: 20px;
-            }
-
-            .person-card,
-            .course-card {
                 margin-bottom: 20px;
             }
 
@@ -842,37 +1010,6 @@
             .gallery-item {
                 height: 150px;
                 font-size: 2.5rem;
-            }
-
-            .contact-card {
-                padding: 20px;
-                margin-bottom: 20px;
-            }
-
-            .vacancy-card {
-                padding: 20px;
-                margin-bottom: 20px;
-            }
-
-            .footer {
-                padding: 25px 0 10px;
-            }
-
-            .footer h5 {
-                font-size: 1rem;
-                margin-top: 15px;
-            }
-
-            .modal-dialog {
-                margin: 10px;
-            }
-
-            .back-to-top {
-                bottom: 20px;
-                right: 20px;
-                width: 45px;
-                height: 45px;
-                font-size: 1rem;
             }
         }
 
@@ -890,27 +1027,9 @@
                 font-size: 1.8rem;
             }
 
-            .navbar-brand {
-                font-size: 1.2rem;
-            }
-
             .gallery-container {
                 grid-template-columns: repeat(3, 1fr);
                 gap: 15px;
-            }
-
-            .person-card,
-            .course-card {
-                margin-bottom: 20px;
-            }
-
-            .principal-card {
-                padding: 30px 25px;
-            }
-
-            .btn-auth {
-                padding: 7px 14px;
-                font-size: 0.85rem;
             }
         }
 
@@ -927,182 +1046,9 @@
             .gallery-container {
                 grid-template-columns: repeat(4, 1fr);
             }
-
-            .navbar-collapse {
-                background: linear-gradient(135deg, var(--dark-brown) 0%, var(--brown) 50%, var(--gold) 100%);
-                padding: 15px;
-                border-radius: 8px;
-                margin-top: 10px;
-            }
-
-            .nav-link {
-                text-align: left;
-                padding: 8px 15px !important;
-            }
-
-            .btn-auth {
-                margin: 10px 0;
-                width: 100%;
-                text-align: center;
-            }
         }
 
-        /* Large devices (desktops, 992px to 1200px) */
-        @media (min-width: 992px) and (max-width: 1200px) {
-            .container {
-                max-width: 960px;
-            }
-
-            .hero h1 {
-                font-size: 2.6rem;
-            }
-
-            .gallery-container {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
-        /* Extra large devices (large desktops, 1200px and up) */
-        @media (min-width: 1200px) {
-            .container {
-                max-width: 1140px;
-            }
-        }
-
-        /* Mobile-first responsive adjustments */
-        @media (max-width: 768px) {
-
-            /* Stack columns vertically on mobile */
-            .row {
-                margin-left: -10px;
-                margin-right: -10px;
-            }
-
-            .col-md-6,
-            .col-md-4,
-            .col-md-3,
-            .col-md-8 {
-                padding-left: 10px;
-                padding-right: 10px;
-            }
-
-            /* Adjust spacing for mobile */
-            .mb-4 {
-                margin-bottom: 1.5rem !important;
-            }
-
-            /* Modal adjustments for mobile */
-            .modal-content {
-                margin: 20px 10px;
-            }
-
-            /* Form adjustments */
-            .form-control {
-                font-size: 16px;
-                /* Prevents zoom on iOS */
-            }
-
-            /* Navigation adjustments */
-            .navbar-nav {
-                text-align: center;
-            }
-
-            .nav-item {
-                margin: 5px 0;
-            }
-
-            /* Card adjustments */
-            .card-item,
-            .person-card,
-            .course-card,
-            .vacancy-card {
-                margin-bottom: 20px;
-            }
-
-            /* Button group adjustments */
-            .btn-group-vertical {
-                width: 100%;
-            }
-
-            .btn-group-vertical .btn {
-                margin: 2px 0;
-            }
-        }
-
-        /* Tablet-specific adjustments */
-        @media (min-width: 768px) and (max-width: 1024px) {
-            .hero {
-                min-height: 400px;
-                padding: 60px 0;
-            }
-
-            .section {
-                padding: 50px 0;
-            }
-
-            .gallery-container {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .person-card,
-            .course-card {
-                margin-bottom: 25px;
-            }
-        }
-
-        /* Orientation-specific adjustments */
-        @media (max-width: 768px) and (orientation: landscape) {
-            .hero {
-                min-height: 300px;
-                padding: 40px 0;
-            }
-
-            .navbar {
-                padding: 10px 0;
-            }
-
-            .modal-dialog {
-                max-height: 80vh;
-                overflow-y: auto;
-            }
-        }
-
-        /* High-resolution displays */
-        @media (-webkit-min-device-pixel-ratio: 2),
-        (min-resolution: 192dpi) {
-            .hero::before {
-                background-size: 50px 50px;
-            }
-        }
-
-        /* Print styles */
-        @media print {
-
-            .navbar,
-            .footer,
-            .btn,
-            .back-to-top {
-                display: none !important;
-            }
-
-            .hero {
-                background: white !important;
-                color: black !important;
-                margin-top: 0;
-            }
-
-            .section {
-                padding: 20px 0;
-                break-inside: avoid;
-            }
-
-            .card-item,
-            .person-card,
-            .course-card {
-                box-shadow: none !important;
-                border: 1px solid #ddd !important;
-            }
-        }
+        /* ===== ACCESSIBILITY & PERFORMANCE ===== */
 
         /* Reduced motion for accessibility */
         @media (prefers-reduced-motion: reduce) {
@@ -1114,6 +1060,15 @@
 
             html {
                 scroll-behavior: auto;
+            }
+
+            .hero::before,
+            .hero::after,
+            .herologo,
+            .hero .btn,
+            .hero-text h1,
+            .hero-text p {
+                animation: none !important;
             }
         }
 
@@ -1176,100 +1131,8 @@
             }
         }
 
-        /* Very small screens (old phones) */
-        @media (max-width: 360px) {
-            .hero h1 {
-                font-size: 1.5rem;
-            }
 
-            .hero p {
-                font-size: 0.9rem;
-            }
-
-            .section-title {
-                font-size: 1.4rem;
-            }
-
-            .gallery-container {
-                grid-template-columns: 1fr;
-            }
-
-            .navbar-brand {
-                font-size: 1rem;
-            }
-
-            .btn {
-                font-size: 0.8rem;
-                padding: 8px 16px;
-            }
-        }
-
-        /* Foldable devices */
-        @media (max-width: 280px) {
-            .container {
-                padding-left: 5px;
-                padding-right: 5px;
-            }
-
-            .hero h1 {
-                font-size: 1.3rem;
-            }
-
-            .section-title {
-                font-size: 1.2rem;
-            }
-
-            .gallery-container {
-                grid-template-columns: 1fr;
-                gap: 10px;
-            }
-
-            .gallery-item {
-                height: 120px;
-                font-size: 2rem;
-            }
-        }
-
-        /* Height-based media queries */
-        @media (max-height: 600px) and (orientation: landscape) {
-            .hero {
-                min-height: 250px;
-                padding: 30px 0;
-            }
-
-            .modal-dialog {
-                max-height: 90vh;
-                overflow-y: auto;
-            }
-
-            .navbar {
-                padding: 8px 0;
-            }
-        }
-
-        /* Ultra-wide screens */
-        @media (min-width: 1600px) {
-            .container {
-                max-width: 1500px;
-            }
-
-            .hero h1 {
-                font-size: 3.5rem;
-            }
-
-            .section-title {
-                font-size: 2.5rem;
-            }
-
-            .gallery-container {
-                grid-template-columns: repeat(6, 1fr);
-            }
-        }
-
-
-
-
-        /* Dropdown Navigation Styles */
+        /* ===== DROPDOWN NAVIGATION STYLES ===== */
         .nav-item.dropdown {
             position: relative;
         }
@@ -1362,34 +1225,9 @@
         }
 
         /* Dropdown icons */
-        .dropdown-item[href="#principal"]::before {
-            font-family: 'Font Awesome 6 Free';
-            content: '\f0e5';
-            font-weight: 900;
-        }
-
-        .dropdown-item[href="#vision"]::before {
-            font-family: 'Font Awesome 6 Free';
-            content: '\f06e';
-            font-weight: 900;
-        }
-
-        .dropdown-item[href="#goals"]::before {
-            font-family: 'Font Awesome 6 Free';
-            content: '\f140';
-            font-weight: 900;
-        }
-
-        .dropdown-item[href="#teachers"]::before {
-            font-family: 'Font Awesome 6 Free';
-            content: '\f501';
-            font-weight: 900;
-        }
-
-        .dropdown-item[href="#students"]::before {
-            font-family: 'Font Awesome 6 Free';
-            content: '\f19d';
-            font-weight: 900;
+        .dropdown-item i {
+            width: 16px;
+            text-align: center;
         }
 
         /* Mobile dropdown styles */
@@ -1447,18 +1285,6 @@
             border-bottom: 1px solid rgba(151, 132, 82, 0.2);
         }
 
-        /* Mega dropdown variant (if needed later) */
-        .dropdown-mega {
-            position: static !important;
-        }
-
-        .dropdown-menu-mega {
-            width: 100%;
-            left: 0 !important;
-            right: 0 !important;
-            padding: 30px;
-        }
-
         /* Animation for dropdown */
         .dropdown-menu {
             transform-origin: top center;
@@ -1504,35 +1330,7 @@
             }
         }
 
-        /* Reduced motion support */
-        @media (prefers-reduced-motion: reduce) {
-
-            .dropdown-menu,
-            .nav-link.dropdown-toggle::after,
-            .dropdown-item {
-                transition: none;
-                animation: none;
-            }
-        }
-
-        /* Touch device optimizations */
-        @media (hover: none) and (pointer: coarse) {
-            .nav-item.dropdown:hover .dropdown-menu {
-                display: none;
-            }
-
-            .nav-item.dropdown.show .dropdown-menu {
-                display: block;
-            }
-        }
-
-
-
-
-
-
-        /* Secondary Navbar Styles */
-        /* ========== DESKTOP STYLES (Unchanged) ========== */
+        /* ===== SECONDARY NAVBAR STYLES ===== */
         .secondary-navbar {
             padding: 8px 0;
             border-bottom: 2px solid var(--gold);
@@ -1599,7 +1397,7 @@
             z-index: 1070 !important;
         }
 
-        /* ========== MOBILE SIDEBAR STYLES ========== */
+        /* ===== MOBILE SIDEBAR STYLES ===== */
         .mobile-sidebar-overlay {
             position: fixed;
             top: 0;
@@ -1742,7 +1540,7 @@
             transform: translateY(-3px);
         }
 
-        /* ========== RESPONSIVE BREAKPOINTS ========== */
+        /* ===== RESPONSIVE BREAKPOINTS FOR SECONDARY NAV ===== */
 
         /* Desktop (992px and up) - Show desktop, hide mobile */
         @media (min-width: 992px) {
@@ -1806,7 +1604,7 @@
             }
         }
 
-        /* Dark Mode Support */
+        /* Dark Mode Support for Sidebar */
         @media (prefers-color-scheme: dark) {
             .mobile-sidebar {
                 background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%);
@@ -1827,7 +1625,7 @@
             }
         }
 
-        /* Smooth scrolling */
+        /* Smooth scrolling for sidebar */
         .sidebar-content::-webkit-scrollbar {
             width: 4px;
         }
@@ -1841,21 +1639,12 @@
             border-radius: 10px;
         }
 
-
-
-
-
-
-
-
-
-        /* WhatsApp Chatbot Styles - Add this to your CSS */
+        /* ===== WHATSAPP CHATBOT STYLES ===== */
         .floating-chat-container {
             position: fixed;
             bottom: 30px;
             right: 30px;
             z-index: 99999;
-            /* Very high z-index to ensure it's above everything */
         }
 
         .floating-button {
@@ -1917,7 +1706,6 @@
             pointer-events: none;
             overflow: hidden;
             z-index: 99999;
-            /* Very high z-index */
         }
 
         .chat-window.active {
@@ -2150,6 +1938,7 @@
             }
         }
 
+        /* Chatbot Responsive Design */
         @media (max-width: 480px) {
             .chat-window {
                 width: 300px;
@@ -2170,17 +1959,12 @@
             }
         }
 
+        /* ===== Z-INDEX FIXES ===== */
         .modal-body {
             position: relative;
             z-index: 99991 !important;
         }
 
-
-
-
-
-
-        /* MORE AGGRESSIVE FIX */
         .secondary-navbar {
             position: relative;
             z-index: 1000 !important;
@@ -2193,11 +1977,10 @@
         .hero {
             position: relative;
             z-index: 1;
-            /* Add isolation to create new stacking context */
             isolation: isolate;
         }
 
-
+        /* ===== LOGO STYLES ===== */
         .Logo {
             margin-top: 2px;
             width: 40px;
@@ -2205,11 +1988,450 @@
             margin-right: 10px;
         }
 
-        /* its for hero section */
         .herologo {
             width: 70px;
             height: 60px;
         }
+
+        .adminimage {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ===== ADDITIONAL UTILITY CLASSES ===== */
+        .text-gold {
+            color: var(--gold) !important;
+        }
+
+        .bg-light-cream {
+            background-color: var(--light-cream) !important;
+        }
+
+        .border-gold {
+            border-color: var(--gold) !important;
+        }
+
+        .shadow-custom {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+        }
+
+        /* Loading states */
+        .loading {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+
+            .navbar,
+            .footer,
+            .btn,
+            .back-to-top,
+            .floating-chat-container,
+            .secondary-navbar {
+                display: none !important;
+            }
+
+            .hero {
+                /* background: white !important; */
+                color: black !important;
+                margin-top: 0;
+            }
+
+            .section {
+                padding: 20px 0;
+                break-inside: avoid;
+            }
+
+            .card-item,
+            .person-card,
+            .course-card {
+                box-shadow: none !important;
+                border: 1px solid #ddd !important;
+            }
+        }
+
+        /* High-resolution displays */
+        @media (-webkit-min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi) {
+            .hero::before {
+                background-size: 50px 50px;
+            }
+        }
+
+        /* Ultra-wide screens */
+        @media (min-width: 1600px) {
+            .container {
+                max-width: 1500px;
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .gallery-container {
+                grid-template-columns: repeat(6, 1fr);
+            }
+        }
+
+        /* Very small screens (old phones) */
+        @media (max-width: 360px) {
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero p {
+                font-size: 0.9rem;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+            }
+
+            .gallery-container {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar-brand {
+                font-size: 1rem;
+            }
+
+            .btn {
+                font-size: 0.8rem;
+                padding: 8px 16px;
+            }
+        }
+
+        /* Foldable devices */
+        @media (max-width: 280px) {
+            .container {
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+
+            .hero h1 {
+                font-size: 1.3rem;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
+
+            .gallery-container {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .gallery-item {
+                height: 120px;
+                font-size: 2rem;
+            }
+        }
+
+        /* Height-based media queries */
+        @media (max-height: 600px) and (orientation: landscape) {
+            .hero {
+                min-height: 250px;
+                padding: 30px 0;
+            }
+
+            .modal-dialog {
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+
+            .navbar {
+                padding: 8px 0;
+            }
+        }
+
+
+
+
+
+
+        /* ===== HERO SECTION WITH SIDE LOGOS ===== */
+        .hero-content-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            position: relative;
+        }
+
+        /* Side Logo Containers */
+        .side-logo {
+            flex: 0 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Side Logo Images */
+        .side-logo-img {
+            width: 250px;
+            height: 200px;
+            /* filter:  */
+            /* brightness(0.5) invert(1) Make white */
+            /* drop-shadow(0 0 15px rgba(69, 67, 67, 0.4)); */
+            opacity: 0.1;
+            /* transition: all 0.4s ease; */
+            /* animation: floatSideLogo 4s ease-in-out infinite;  */
+        }
+
+        /* Left Logo Specific */
+        /* .left-logo .side-logo-img { */
+        /* animation-delay: 0s; */
+        /* } */
+
+        /* Right Logo Specific */
+        .right-logo .side-logo-img {
+            animation-delay: 2s;
+            /* Staggered animation */
+        }
+
+        /* Center Content */
+        .hero-text {
+            flex: 1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Floating Animation for Side Logos */
+        @keyframes floatSideLogo {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+                opacity: 0.9;
+            }
+
+            50% {
+                transform: translateY(-10px) scale(1.05);
+                opacity: 1;
+            }
+        }
+
+        /* Hover Effects */
+        /* .side-logo:hover .side-logo-img {
+    transform: scale(1.1) rotate(5deg);
+    filter: 
+        brightness(0) invert(1)
+        drop-shadow(0 0 25px rgba(255, 255, 255, 0.8));
+    opacity: 1;
+} */
+
+        /* Main Center Logo */
+        .herologo {
+            width: 80px;
+            height: 70px;
+            margin-right: 15px;
+            vertical-align: middle;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+            animation: logoBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes logoBounce {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+
+            50% {
+                transform: translateY(-5px) scale(1.05);
+            }
+        }
+
+        /* Text Styling */
+        .hero-tagline {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-style: italic;
+            font-weight: 600;
+            color: var(--gold);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .side-logo-img {
+                width: 150px;
+                height: 120px;
+            }
+
+            .hero-content-wrapper {
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .side-logo-img {
+                width: 120px;
+                height: 100px;
+            }
+
+            .hero-content-wrapper {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content-wrapper {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .side-logo {
+                order: -1;
+                /* Move logos above text on mobile */
+            }
+
+            .side-logo-img {
+                width: 100px;
+                height: 80px;
+            }
+
+            .left-logo,
+            .right-logo {
+                display: none;
+                /* Hide side logos on mobile, keep only center */
+            }
+
+            /* Alternative: Show both logos stacked on mobile */
+            /*
+    .hero-content-wrapper {
+        flex-direction: column;
+    }
+    
+    .side-logos-container {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+    }
+    
+    .side-logo-img {
+        width: 80px;
+        height: 65px;
+    }
+    */
+        }
+
+        /* For very small screens */
+        @media (max-width: 576px) {
+            .hero-text {
+                text-align: center;
+            }
+
+            .herologo {
+                width: 60px;
+                height: 50px;
+                margin-right: 10px;
+            }
+
+            .hero-tagline {
+                font-size: 1.2rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+        }
+
+        /* Uncomment this for mobile layout with both logos */
+
+        @media (max-width: 768px) {
+            .hero-content-wrapper {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .side-logos-container {
+                display: flex;
+                justify-content: center;
+                gap: 40px;
+                order: -1;
+            }
+
+            .side-logo-img {
+                width: 80px;
+                height: 65px;
+            }
+        }
+
+
+
+
+
+
+
+
+
+        /* ===== COURSE ANCHOR TAGS STYLING ===== */
+.course-info a {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--gold), var(--brown));
+    color: var(--white);
+    text-decoration: none;
+    padding: 6px 12px;
+    margin: 3px 5px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.course-info a:hover {
+    background: var(--white);
+    color: var(--dark-brown);
+    border-color: var(--gold);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(245, 186, 44, 0.3);
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 768px) {
+    .course-info a {
+        padding: 5px 10px;
+        font-size: 0.75rem;
+        margin: 2px 3px;
+    }
+}
     </style>
 </head>
 
@@ -2218,7 +2440,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand" href="#home">
-                <img class="Logo" src="./logo.png" alt="logoimage"> AMFA
+                <img class="Logo" src="./logo.png" alt="logoimage">AMFA (KG to 5TH)
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -2481,22 +2703,53 @@
 
 
     <!-- HERO SECTION -->
+    <!-- HERO SECTION -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <div class="container text-center hero-text">
-                <h1><img class="herologo" src="./logo.png" alt=""> Welcome to Al-Momin Fusion Academy</h1>
-                <p>Empowering young minds through holistic education, fostering academic excellence, <br> creativity,
-                    and character development.</p>
-                <button class="btn btn-hero-primary btn-clickable" data-bs-toggle="modal"
-                    data-bs-target="#registerModal">
-                    <i class="fas fa-clipboard-list"></i> REGISTER NOW
-                </button>
-                <a href="#course" class="btn btn-hero-secondary btn-clickable">
-                    <i class="fas fa-info-circle"></i> DISCOVER MORE
-                </a>
+            <div class="container">
+                <div class="hero-content-wrapper">
+                    <!-- Left Logo -->
+                    <div class="side-logo left-logo">
+                        <img src="./logo.png" alt="Al-Momin Fusion Academy" class="side-logo-img">
+                    </div>
+
+                    <!-- Center Content -->
+                    <div class="hero-text text-center">
+                        <!-- <h1>
+                            <img class="herologo" src="./logo.png" alt="Logo"> 
+                            Welcome to <br> Al-Momin Fusion Academy
+                        </h1> -->
+
+                        <h1>
+                            <!-- <img class="herologo" src="./logo.png" alt="Logo"> -->
+                            <span>Welcome to Al-Momin</span> 
+                            <span> Fusion Academy</span>
+                        </h1>
+
+                        <p class="hero-tagline">"Your Kids Deserves The Best Education"</p>
+                        <p class="hero-description">Empowering young minds through holistic education, fostering
+                            academic excellence, <br> creativity, and character development.</p>
+
+                        <div class="hero-buttons">
+                            <button class="btn btn-hero-primary btn-clickable" data-bs-toggle="modal"
+                                data-bs-target="#registerModal">
+                                <i class="fas fa-clipboard-list"></i> REGISTER NOW
+                            </button>
+                            <a href="#course" class="btn btn-hero-secondary btn-clickable">
+                                <i class="fas fa-info-circle"></i> DISCOVER MORE
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right Logo -->
+                    <div class="side-logo right-logo">
+                        <img src="./logo.png" alt="Al-Momin Fusion Academy" class="side-logo-img">
+                    </div>
+                </div>
             </div>
         </div>
     </section>
+
 
     <!-- PRINCIPAL MESSAGE -->
     <section class="section principal-section" id="about">
@@ -2506,7 +2759,7 @@
                 <div class="col-lg-8">
                     <div class="principal-card">
                         <div class="principal-image">
-                            <i class="fas fa-user-tie"></i>
+                            <img class="adminimage" src="./admin.jpg" alt="">
                         </div>
                         <h3>Ehtisham Momin</h3>
                         <div class="position">Principal & Director</div>
@@ -2592,15 +2845,17 @@
                 <div class="col-md-4">
                     <div class="course-card">
                         <div class="course-image">
-                            <i class="fas fa-calculator"></i>
+                            <i class="fas fa-graduation-cap"></i>
                         </div>
                         <div class="course-info">
-                            <h5>Mathematics & Sciences</h5>
-                            <p>Comprehensive curriculum covering algebra, geometry, calculus, physics, chemistry, and
-                                biology.</p>
+                            <h5>ACADEMICS</h5>
+                            <a href="">Litrature</a>
+                            <a href="">Religion</a>
+                            <a href="">Science</a>
+                            <a href="">Maths</a>
                             <div class="course-meta">
-                                <span><i class="fas fa-clock"></i> 5-7 PM</span>
-                                <span><i class="fas fa-user"></i> Grades 6-12</span>
+                                <span><i class="fas fa-clock"></i> 8-1</span>
+                                <span><i class="fas fa-user"></i> All Grades</span>
                             </div>
                         </div>
                     </div>
@@ -2611,11 +2866,16 @@
                             <i class="fas fa-language"></i>
                         </div>
                         <div class="course-info">
-                            <h5>Languages & Literature</h5>
-                            <p>English, Urdu, and Arabic language courses with focus on literature, grammar, and
-                                composition.</p>
+                            <h5>Languages</h5>
+                            <div class="tags">
+                                
+                                <a href="">English</a>
+                                <a href="">Arabic</a>
+                                <a href="">Urdu</a>
+                                <a href="">Pashto</a>
+                            </div>
                             <div class="course-meta">
-                                <span><i class="fas fa-clock"></i> 3-5 PM</span>
+                                <span><i class="fas fa-clock"></i> 8-1 </span>
                                 <span><i class="fas fa-user"></i> All Grades</span>
                             </div>
                         </div>
@@ -2627,15 +2887,63 @@
                             <i class="fas fa-laptop-code"></i>
                         </div>
                         <div class="course-info">
-                            <h5>Computer Science</h5>
-                            <p>Programming, web development, and computer fundamentals for the digital age.</p>
+                            <h5>Computer</h5>
+                            <a href="">Basic IT</a>
+                            <a href="">Office Tools</a>
+                            <a href="">Basic Coding</a>
+                            <a href="">Software</a>
+                            <a href="">Hardware</a>
                             <div class="course-meta">
-                                <span><i class="fas fa-clock"></i> 4-6 PM</span>
-                                <span><i class="fas fa-user"></i> Grades 8-12</span>
+                                <span><i class="fas fa-clock"></i> 8-1 </span>
+                                <span><i class="fas fa-user"></i> All Grades</span>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Second Row of Courses -->
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="course-card">
+                        <div class="course-image">
+                            <i class="fas fa-running"></i>
+                        </div>
+                        <div class="course-info">
+                            <h5>SPORTS</h5>
+                            <a href="">Archery</a>
+                            <a href="">Karate</a>
+                            <a href="">Cricket</a>
+                            <a href="">Football</a>
+                            <a href="">Volleyball</a>
+                            <a href="">Badminton</a>
+                            <a href="">VGs</a>
+                            <div class="course-meta">
+                                <span><i class="fas fa-clock"></i> 8-1 </span>
+                                <span><i class="fas fa-user"></i> All Grades</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="course-card">
+                        <div class="course-image">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <div class="course-info">
+                            <h5>ARTS</h5>
+                            <a href="">Drawing</a>
+                            <a href="">Nature Art</a>
+                            <a href="">Stories</a>
+                            <a href="">H-crafts</a>
+                            <div class="course-meta">
+                                <span><i class="fas fa-clock"></i> 1-1 </span>
+                                <span><i class="fas fa-user"></i> All Grades</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
             </div>
         </div>
     </section>
@@ -2782,10 +3090,10 @@
                     <div class="contact-card">
                         <h4 class="mb-4">Get In Touch</h4>
                         <div class="contact-info">
-                            <p><i class="fas fa-map-marker-alt"></i> 123 Education Street, Karachi, Sindh, Pakistan</p>
-                            <p><i class="fas fa-phone"></i> +92 (300) 123-4567</p>
-                            <p><i class="fas fa-envelope"></i> info@academyschool.edu</p>
-                            <p><i class="fas fa-clock"></i> Monday - Friday: 8:00 AM - 4:00 PM</p>
+                            <p><i class="fas fa-map-marker-alt"></i> Karachi-Muslim Abad Colony UC-2</p>
+                            <p><i class="fas fa-phone"></i> +92 3325522774 | 00971561349042</p>
+                            <p><i class="fas fa-envelope"></i>  momin.fusion_academy@outlook.com</p>
+                            <p><i class="fas fa-clock"></i> Monday - Friday: 8:00 AM - 1:00 PM</p>
                         </div>
                         <div class="mt-4">
                             <h5>Follow Us</h5>
@@ -2867,6 +3175,7 @@
             <div class="row">
                 <div class="col-md-4 mb-3">
                     <h5><i class="fas fa-graduation-cap"></i> Academy School</h5>
+                    <p>"Your Kids Deserves The Best Education"</p>
                     <p>Empowering young minds through holistic education, fostering academic excellence, creativity, and
                         character development.</p>
                 </div>
