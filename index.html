@@ -2280,7 +2280,7 @@
 
         .hero-buttons {
             display: flex;
-            gap: 15px;
+            /* gap: 10px; */
             justify-content: center;
             flex-wrap: wrap;
         }
@@ -2400,38 +2400,49 @@
 
 
         /* ===== COURSE ANCHOR TAGS STYLING ===== */
-.course-info a {
-    display: inline-block;
-    background: linear-gradient(135deg, var(--gold), var(--brown));
-    color: var(--white);
-    text-decoration: none;
-    padding: 6px 12px;
-    margin: 3px 5px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
+        .course-info a {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), var(--brown));
+            color: var(--white);
+            text-decoration: none;
+            padding: 6px 12px;
+            margin: 3px 5px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
-.course-info a:hover {
-    background: var(--white);
-    color: var(--dark-brown);
-    border-color: var(--gold);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(245, 186, 44, 0.3);
-}
+        .course-info a:hover {
+            background: var(--white);
+            color: var(--dark-brown);
+            border-color: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(245, 186, 44, 0.3);
+        }
 
-/* Responsive for smaller screens */
-@media (max-width: 768px) {
-    .course-info a {
-        padding: 5px 10px;
-        font-size: 0.75rem;
-        margin: 2px 3px;
-    }
-}
+        /* Responsive for smaller screens */
+        @media (max-width: 768px) {
+            .course-info a {
+                padding: 5px 10px;
+                font-size: 0.75rem;
+                margin: 2px 3px;
+            }
+        }
+
+
+
+        /* wecome content  */
+        .hero-text h1 .wel
+        {
+            /* font-style: italic; */
+            font-family: 'Merriweather', Georgia, 'Times New Roman', serif;
+
+        }
+
     </style>
 </head>
 
@@ -2715,15 +2726,12 @@
 
                     <!-- Center Content -->
                     <div class="hero-text text-center">
-                        <!-- <h1>
-                            <img class="herologo" src="./logo.png" alt="Logo"> 
-                            Welcome to <br> Al-Momin Fusion Academy
-                        </h1> -->
-
+                        <h1>
+                            <span class="wel">Welcome to </span>
+                        </h1>
                         <h1>
                             <!-- <img class="herologo" src="./logo.png" alt="Logo"> -->
-                            <span>Welcome to Al-Momin</span> 
-                            <span> Fusion Academy</span>
+                            <span>Al-Momin Fusion Academy</span>
                         </h1>
 
                         <p class="hero-tagline">"Your Kids Deserves The Best Education"</p>
@@ -2868,7 +2876,7 @@
                         <div class="course-info">
                             <h5>LANGUAGE / MEDIUM</h5>
                             <div class="tags">
-                                
+
                                 <a href="">English</a>
                                 <a href="">Arabic</a>
                                 <a href="">Urdu</a>
@@ -2943,7 +2951,7 @@
                         </div>
                     </div>
                 </div>
-               
+
             </div>
         </div>
     </section>
@@ -3092,7 +3100,7 @@
                         <div class="contact-info">
                             <p><i class="fas fa-map-marker-alt"></i> Karachi-Muslim Abad Colony UC-2</p>
                             <p><i class="fas fa-phone"></i> +92 3325522774 | 00971561349042</p>
-                            <p><i class="fas fa-envelope"></i>  momin.fusion_academy@outlook.com</p>
+                            <p><i class="fas fa-envelope"></i> momin.fusion_academy@outlook.com</p>
                             <p><i class="fas fa-clock"></i> Monday - Friday: 8:00 AM - 1:00 PM</p>
                         </div>
                         <div class="mt-4">
@@ -3174,7 +3182,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-3">
-                    <h5><img class="Logo" src="./logo.png" alt="logoimage">  Academy School</h5>
+                    <h5><img class="Logo" src="./logo.png" alt="logoimage"> AL-MOMIN FUSION ACADEMY</h5>
                     <p>"Your Kids Deserves The Best Education"</p>
                     <p>Empowering young minds through holistic education, fostering academic excellence, creativity, and
                         character development.</p>
