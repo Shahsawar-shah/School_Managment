@@ -1,0 +1,1643 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Announcements - Al-Momin Fusion Academy</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* ===== CSS VARIABLES & GLOBAL STYLES ===== */
+        :root {
+            --gold: #F5BA2C;
+            --brown: #978452;
+            --dark-brown: #6B5B3F;
+            --light-cream: #FEFAF0;
+            --white: #FFFFFF;
+            --dark-text: #2D2D2D;
+            --accent-teal: #2C7873;
+            --accent-grey: #D4D4D4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--dark-text);
+            background-color: var(--light-cream);
+            position: relative;
+            line-height: 1.6;
+        }
+
+        /* Watermark Background */
+        body::before {
+            content: '';
+            background-image: url('./logo.png');
+            background-size: 250px;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.08;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ===== MAIN NAVBAR STYLES ===== */
+        .navbar {
+            background: linear-gradient(135deg, var(--dark-brown) 0%, var(--brown) 50%, var(--gold) 100%);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            padding: 14px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.35rem;
+            color: var(--white) !important;
+            margin-right: 50px;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .navbar-brand i {
+            font-size: 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 6px 10px;
+            border-radius: 6px;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            margin: 0 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            padding: 8px 0 !important;
+        }
+
+        .nav-link:hover {
+            color: var(--gold) !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -8px;
+            left: 0;
+            background: linear-gradient(90deg, var(--gold), transparent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .btn-auth {
+            background: var(--gold);
+            color: var(--dark-brown);
+            border: none;
+            padding: 4px 18px;
+            margin-left: 8px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(245, 186, 44, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-auth:hover {
+            background: var(--white);
+            color: var(--dark-brown);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(245, 186, 44, 0.4);
+        }
+
+        /* ===== ANNOUNCEMENTS PAGE STYLES ===== */
+        .announcements-hero {
+            background: linear-gradient(135deg, var(--dark-brown) 0%, var(--brown) 35%, var(--gold) 100%);
+            color: var(--white);
+            padding: 80px 0 60px;
+            text-align: center;
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .announcements-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .announcements-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section {
+            padding: 60px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--dark-brown);
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--accent-teal));
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            border-radius: 2px;
+        }
+
+        /* ===== ANNOUNCEMENT CARDS STYLES ===== */
+        .announcement-card {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+            border-left: 5px solid var(--gold);
+            overflow: hidden;
+        }
+
+        .announcement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+            border-left-color: var(--accent-teal);
+        }
+
+        .announcement-header {
+            background: linear-gradient(135deg, rgba(245, 186, 44, 0.1) 0%, rgba(151, 132, 82, 0.1) 100%);
+            padding: 20px;
+            border-bottom: 1px solid rgba(151, 132, 82, 0.2);
+        }
+
+        .announcement-title {
+            color: var(--dark-brown);
+            font-weight: 800;
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+
+        .announcement-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 0.85rem;
+            color: var(--brown);
+            font-weight: 600;
+        }
+
+        .announcement-meta i {
+            margin-right: 5px;
+        }
+
+        .announcement-body {
+            padding: 20px;
+        }
+
+        .announcement-content {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .announcement-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .announcement-tag {
+            background: rgba(245, 186, 44, 0.1);
+            color: var(--dark-brown);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .priority-high {
+            border-left-color: #e74c3c;
+        }
+
+        .priority-medium {
+            border-left-color: #f39c12;
+        }
+
+        .priority-low {
+            border-left-color: #27ae60;
+        }
+
+        /* ===== FILTER SECTION STYLES ===== */
+        .filter-section {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+        }
+
+        .filter-title {
+            color: var(--dark-brown);
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .filter-btn {
+            background: var(--white);
+            border: 2px solid var(--accent-grey);
+            color: var(--dark-text);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--dark-brown);
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 15px 10px 40px;
+            border: 2px solid var(--accent-grey);
+            border-radius: 25px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 0.2rem rgba(245, 186, 44, 0.25);
+            outline: none;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--brown);
+        }
+
+        /* ===== NO RESULTS STYLES ===== */
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: var(--brown);
+        }
+
+        .no-results i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--accent-grey);
+        }
+
+        /* ===== PAGINATION STYLES ===== */
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .pagination {
+            display: flex;
+            gap: 5px;
+        }
+
+        .page-link {
+            background: var(--white);
+            border: 2px solid var(--accent-grey);
+            color: var(--dark-text);
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .page-link:hover,
+        .page-link.active {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--dark-brown);
+        }
+
+        /* ===== BROCHURE/BANNER ANNOUNCEMENT STYLES ===== */
+        .brochure-section {
+            background: linear-gradient(180deg, var(--light-cream) 0%, rgba(245, 186, 44, 0.05) 100%);
+        }
+
+        /* Brochure Card Container */
+        .brochure-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            transition: all 0.4s ease;
+            height: 100%;
+            border: 2px solid transparent;
+            position: relative;
+        }
+
+        .brochure-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            border-color: var(--gold);
+        }
+
+        /* Brochure Image Container */
+        .brochure-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .brochure-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .brochure-card:hover .brochure-image img {
+            transform: scale(1.1);
+        }
+
+        /* Featured Badge */
+        .brochure-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--gold);
+            color: var(--dark-brown);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 2;
+        }
+
+        /* Brochure Content Area */
+        .brochure-content {
+            padding: 20px;
+        }
+
+        .brochure-title {
+            color: var(--dark-brown);
+            font-weight: 800;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .brochure-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
+            color: var(--brown);
+            font-weight: 600;
+        }
+
+        .brochure-meta i {
+            margin-right: 5px;
+            width: 15px;
+            text-align: center;
+        }
+
+        .brochure-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        /* Action Buttons */
+        .brochure-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .brochure-actions .btn {
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-view {
+            background: var(--gold);
+            color: var(--dark-brown);
+        }
+
+        .btn-view:hover {
+            background: var(--dark-brown);
+            color: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(151, 132, 82, 0.3);
+        }
+
+        .btn-download {
+            background: transparent;
+            color: var(--dark-brown);
+            border-color: var(--gold) !important;
+        }
+
+        .btn-download:hover {
+            background: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(245, 186, 44, 0.3);
+        }
+
+        /* ===== BROCHURE MODAL STYLES ===== */
+
+        /* Modal Dialog - Full Width for Images */
+        .brochure-modal .modal-dialog {
+            max-width: 95%;
+            margin: 1.75rem auto;
+        }
+
+        .brochure-modal .modal-content {
+            border-radius: 15px;
+            overflow: hidden;
+            border: 3px solid var(--gold);
+            background: var(--white);
+        }
+
+        /* Modal Header */
+        .brochure-modal .modal-header {
+            background: linear-gradient(135deg, var(--dark-brown) 0%, var(--brown) 100%);
+            color: var(--white);
+            border-bottom: 2px solid var(--gold);
+            padding: 20px;
+        }
+
+        .brochure-modal .modal-title {
+            font-weight: 700;
+            font-size: 1.4rem;
+            margin: 0;
+        }
+
+        .brochure-modal .btn-close {
+            filter: invert(1);
+            opacity: 0.8;
+        }
+
+        .brochure-modal .btn-close:hover {
+            opacity: 1;
+        }
+
+        /* Full Image Display - Shows actual image size */
+        .brochure-modal-full-image {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            padding: 0;
+            margin: 0;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .brochure-modal-full-image img {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 70vh;
+            display: block;
+            object-fit: contain;
+        }
+
+        /* Modal Content Area */
+        .brochure-modal-content {
+            padding: 30px;
+            background: var(--white);
+        }
+
+        .brochure-modal-content h4 {
+            color: var(--dark-brown);
+            font-weight: 700;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--gold);
+            padding-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        .brochure-modal-content ul {
+            padding-left: 20px;
+            margin-bottom: 25px;
+        }
+
+        .brochure-modal-content li {
+            margin-bottom: 12px;
+            color: #555;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .brochure-modal-content strong {
+            color: var(--dark-brown);
+            font-weight: 700;
+        }
+
+        .brochure-modal-content p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        /* Download Button in Modal */
+        .brochure-modal-content .btn-download {
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: 700;
+            background: var(--gold);
+            color: var(--dark-brown);
+            border: none;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .brochure-modal-content .btn-download:hover {
+            background: var(--dark-brown);
+            color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(151, 132, 82, 0.4);
+        }
+
+        /* ===== FOOTER SECTION ===== */
+        .footer {
+            background: linear-gradient(135deg, var(--dark-brown) 0%, var(--brown) 50%, rgba(245, 186, 44, 0.9) 100%);
+            color: var(--white);
+            padding: 35px 0 15px;
+            margin-top: 50px;
+            font-size: 0.95rem;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer h5 {
+            font-weight: 800;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .footer p {
+            font-size: 0.92rem;
+            margin-bottom: 8px;
+            opacity: 0.95;
+        }
+
+        .footer a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.92rem;
+        }
+
+        .footer a:hover {
+            color: var(--white);
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 20px;
+            font-size: 0.88rem;
+            opacity: 0.9;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+
+        /* Tablet Devices */
+        @media (max-width: 992px) {
+            .brochure-modal .modal-dialog {
+                max-width: 90%;
+            }
+
+            .brochure-modal-full-image img {
+                max-height: 60vh;
+            }
+
+            .brochure-modal-content {
+                padding: 25px;
+            }
+        }
+
+        /* Mobile Devices */
+        @media (max-width: 768px) {
+            .announcements-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .announcements-hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .announcement-meta {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .filter-options {
+                justify-content: center;
+            }
+
+            .brochure-card {
+                margin-bottom: 20px;
+            }
+
+            .brochure-actions {
+                flex-direction: column;
+            }
+
+            .brochure-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .brochure-image {
+                height: 180px;
+            }
+
+            .brochure-title {
+                font-size: 1.2rem;
+            }
+
+            .brochure-modal .modal-dialog {
+                max-width: 95%;
+                margin: 0.5rem;
+            }
+
+            .brochure-modal-full-image img {
+                max-height: 50vh;
+            }
+
+            .brochure-modal-content {
+                padding: 20px;
+            }
+
+            .brochure-modal .modal-header {
+                padding: 15px;
+            }
+
+            .brochure-modal .modal-title {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Small Mobile Devices */
+        @media (max-width: 576px) {
+            .announcements-hero {
+                padding: 60px 0 40px;
+            }
+
+            .announcements-hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .section {
+                padding: 40px 0;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .announcement-header {
+                padding: 15px;
+            }
+
+            .announcement-body {
+                padding: 15px;
+            }
+
+            .brochure-content {
+                padding: 15px;
+            }
+
+            .brochure-meta {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .brochure-image {
+                height: 150px;
+            }
+
+            .brochure-modal .modal-dialog {
+                max-width: 100%;
+                margin: 0;
+            }
+
+            .brochure-modal-full-image img {
+                max-height: 40vh;
+            }
+
+            .brochure-modal-content {
+                padding: 15px;
+            }
+
+            .brochure-modal-content h4 {
+                font-size: 1.2rem;
+            }
+
+            .brochure-modal-content li,
+            .brochure-modal-content p {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Large Screens */
+        @media (min-width: 1400px) {
+            .brochure-modal .modal-dialog {
+                max-width: 1300px;
+            }
+
+            .brochure-modal-full-image img {
+                max-height: 75vh;
+            }
+        }
+
+        /* Animation for Modal Entrance */
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .brochure-modal .modal-content {
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        /* Logo Styles */
+        .Logo {
+            margin-top: 2px;
+            width: 40px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        /* Focus States for Accessibility */
+        .brochure-actions .btn:focus,
+        .brochure-modal-content .btn-download:focus {
+            outline: 3px solid var(--gold);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img class="Logo" src="./logo.png" alt="AMFA Logo">
+                AMFA - PRIMARY
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">HOME</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            COURSE
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">ACADEMICS</a></li>
+                            <li><a class="dropdown-item" href="#">SPORTS</a></li>
+                            <li><a class="dropdown-item" href="#">COMPUTER</a></li>
+                            <li><a class="dropdown-item" href="#">ARTS</a></li>
+                            <li><a class="dropdown-item" href="#">LANGUAGES</a></li>
+                            <li><a class="dropdown-item" href="#">HAND CRAFTS</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">GALLERY</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            ABOUT
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">License</a></li>
+                            <li><a class="dropdown-item" href="#">Awards</a></li>
+                            <li><a class="dropdown-item" href="#">Registration</a></li>
+                            <li><a class="dropdown-item" href="#">Affiliation</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#contact">CONTACT</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#vacancy">VACANCY</a></li>
+                    <li class="nav-item mt-2 mt-lg-0">
+                        <button class="btn-auth" data-bs-toggle="modal" data-bs-target="#loginModal">
+                            <i class="fas fa-sign-in-alt"></i> LOGIN
+                        </button>
+                    </li>
+                    <li class="nav-item mt-2 mt-lg-0">
+                        <button class="btn-auth" data-bs-toggle="modal" data-bs-target="#signupModal">
+                            <i class="fas fa-user-plus"></i> SIGNUP
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="announcements-hero">
+        <div class="container">
+            <h1>School Announcements</h1>
+            <p>Stay updated with the latest news, events, and important information from Al-Momin Fusion Academy</p>
+        </div>
+    </section>
+
+    <!-- ANNOUNCEMENTS SECTION -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Latest Announcements</h2>
+
+            <!-- FILTER SECTION -->
+            <div class="filter-section">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4 class="filter-title">Filter by Category</h4>
+                        <div class="filter-options">
+                            <button class="filter-btn active" data-filter="all">All</button>
+                            <button class="filter-btn" data-filter="academic">Academic</button>
+                            <button class="filter-btn" data-filter="event">Events</button>
+                            <button class="filter-btn" data-filter="sports">Sports</button>
+                            <button class="filter-btn" data-filter="general">General</button>
+                            <button class="filter-btn" data-filter="urgent">Urgent</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h4 class="filter-title">Search Announcements</h4>
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="searchInput" placeholder="Search announcements...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ANNOUNCEMENTS LIST -->
+            <div id="announcementsList">
+                <div class="announcement-card priority-high" data-category="urgent" data-date="2024-01-15">
+                    <div class="announcement-header">
+                        <h3 class="announcement-title">Final Term Examinations Schedule</h3>
+                        <div class="announcement-meta">
+                            <span><i class="fas fa-calendar-alt"></i> January 15, 2024</span>
+                            <span><i class="fas fa-user"></i> Principal's Office</span>
+                            <span><i class="fas fa-eye"></i> All Students & Parents</span>
+                        </div>
+                    </div>
+                    <div class="announcement-body">
+                        <p class="announcement-content">
+                            The schedule for Final Term Examinations for the academic year 2023-2024 has been published.
+                            Examinations will commence from February 1st, 2024 and conclude on February 15th, 2024.
+                            All students are advised to collect their admit cards from the administration office by
+                            January 25th.
+                        </p>
+                        <div class="announcement-tags">
+                            <span class="announcement-tag">Examinations</span>
+                            <span class="announcement-tag">Academic</span>
+                            <span class="announcement-tag">Important</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="announcement-card priority-medium" data-category="event" data-date="2024-01-10">
+                    <div class="announcement-header">
+                        <h3 class="announcement-title">Annual Sports Day 2024</h3>
+                        <div class="announcement-meta">
+                            <span><i class="fas fa-calendar-alt"></i> January 10, 2024</span>
+                            <span><i class="fas fa-user"></i> Sports Department</span>
+                            <span><i class="fas fa-eye"></i> All Students</span>
+                        </div>
+                    </div>
+                    <div class="announcement-body">
+                        <p class="announcement-content">
+                            We are excited to announce our Annual Sports Day will be held on February 20th, 2024.
+                            Various athletic competitions, games, and fun activities are planned. Students interested
+                            in participating should register with their class teachers by January 30th. Parents are
+                            cordially invited to attend and cheer for our young athletes.
+                        </p>
+                        <div class="announcement-tags">
+                            <span class="announcement-tag">Sports</span>
+                            <span class="announcement-tag">Event</span>
+                            <span class="announcement-tag">Fun Day</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="announcement-card priority-low" data-category="academic" data-date="2024-01-05">
+                    <div class="announcement-header">
+                        <h3 class="announcement-title">New Computer Lab Inauguration</h3>
+                        <div class="announcement-meta">
+                            <span><i class="fas fa-calendar-alt"></i> January 5, 2024</span>
+                            <span><i class="fas fa-user"></i> IT Department</span>
+                            <span><i class="fas fa-eye"></i> All Students</span>
+                        </div>
+                    </div>
+                    <div class="announcement-body">
+                        <p class="announcement-content">
+                            We are pleased to inform you that our new state-of-the-art computer lab will be inaugurated
+                            on January 25th, 2024. The lab is equipped with 30 high-performance computers, interactive
+                            smart boards, and the latest software for programming and design. Computer classes will
+                            commence in the new lab from February 1st onwards.
+                        </p>
+                        <div class="announcement-tags">
+                            <span class="announcement-tag">Technology</span>
+                            <span class="announcement-tag">Infrastructure</span>
+                            <span class="announcement-tag">Computer Education</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="announcement-card priority-medium" data-category="general" data-date="2024-01-03">
+                    <div class="announcement-header">
+                        <h3 class="announcement-title">Parent-Teacher Meeting Schedule</h3>
+                        <div class="announcement-meta">
+                            <span><i class="fas fa-calendar-alt"></i> January 3, 2024</span>
+                            <span><i class="fas fa-user"></i> Administration</span>
+                            <span><i class="fas fa-eye"></i> All Parents</span>
+                        </div>
+                    </div>
+                    <div class="announcement-body">
+                        <p class="announcement-content">
+                            The next Parent-Teacher Meeting is scheduled for January 28th, 2024 from 9:00 AM to 1:00 PM.
+                            This is an important opportunity to discuss your child's academic progress and overall
+                            development.
+                            Please confirm your attendance with the class teacher by January 20th. Time slots will be
+                            allocated
+                            to avoid waiting times.
+                        </p>
+                        <div class="announcement-tags">
+                            <span class="announcement-tag">Parents</span>
+                            <span class="announcement-tag">Meeting</span>
+                            <span class="announcement-tag">Academic Progress</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="announcement-card priority-high" data-category="urgent" data-date="2023-12-28">
+                    <div class="announcement-header">
+                        <h3 class="announcement-title">School Closure Due to Inclement Weather</h3>
+                        <div class="announcement-meta">
+                            <span><i class="fas fa-calendar-alt"></i> December 28, 2023</span>
+                            <span><i class="fas fa-user"></i> Principal's Office</span>
+                            <span><i class="fas fa-eye"></i> All Students & Parents</span>
+                        </div>
+                    </div>
+                    <div class="announcement-body">
+                        <p class="announcement-content">
+                            Due to the severe weather forecast and advisory from the local authorities, the school will
+                            remain closed on January 8th and 9th, 2024. All classes and scheduled activities for these
+                            days are cancelled. Please stay safe and monitor official channels for further updates.
+                            Online learning resources will be shared via the school portal.
+                        </p>
+                        <div class="announcement-tags">
+                            <span class="announcement-tag">Weather</span>
+                            <span class="announcement-tag">School Closure</span>
+                            <span class="announcement-tag">Important</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="announcement-card priority-low" data-category="event" data-date="2023-12-20">
+                    <div class="announcement-header">
+                        <h3 class="announcement-title">Art Exhibition & Cultural Fest</h3>
+                        <div class="announcement-meta">
+                            <span><i class="fas fa-calendar-alt"></i> December 20, 2023</span>
+                            <span><i class="fas fa-user"></i> Arts Department</span>
+                            <span><i class="fas fa-eye"></i> All Students</span>
+                        </div>
+                    </div>
+                    <div class="announcement-body">
+                        <p class="announcement-content">
+                            Our annual Art Exhibition and Cultural Fest will be held on March 5th, 2024. Students are
+                            encouraged to participate by submitting their artwork, crafts, and performances. Categories
+                            include painting, sculpture, digital art, traditional crafts, dance, and music. Registration
+                            forms are available with art teachers. Last date for submission is February 25th.
+                        </p>
+                        <div class="announcement-tags">
+                            <span class="announcement-tag">Arts</span>
+                            <span class="announcement-tag">Culture</span>
+                            <span class="announcement-tag">Exhibition</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NO RESULTS MESSAGE -->
+            <div id="noResults" class="no-results" style="display: none;">
+                <i class="fas fa-search"></i>
+                <h3>No Announcements Found</h3>
+                <p>Try adjusting your search or filter criteria</p>
+            </div>
+
+            <!-- PAGINATION -->
+            <div class="pagination-container">
+                <div class="pagination">
+                    <a href="#" class="page-link active">1</a>
+                    <a href="#" class="page-link">2</a>
+                    <a href="#" class="page-link">3</a>
+                    <a href="#" class="page-link">Next</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BROCHURE/BANNER SECTION -->
+    <section class="section brochure-section">
+        <div class="container">
+            <h2 class="section-title">Featured Announcements</h2>
+
+            <div class="row" id="brochureAnnouncements">
+                <!-- Brochure Card 1 -->
+                <div class="col-lg-6 mb-4">
+                    <div class="brochure-card" data-category="event">
+                        <div class="brochure-image">
+                            <img src="./admin.jpg" alt="Annual Sports Day 2024">
+                            <div class="brochure-badge">Featured</div>
+                        </div>
+                        <div class="brochure-content">
+                            <h3 class="brochure-title">Annual Sports Day 2024</h3>
+                            <div class="brochure-meta">
+                                <span><i class="fas fa-calendar-alt"></i> February 20, 2024</span>
+                                <span><i class="fas fa-map-marker-alt"></i> School Ground</span>
+                            </div>
+                            <p class="brochure-description">
+                                Join us for our spectacular Annual Sports Day featuring various competitions,
+                                games, and fun activities for all students.
+                            </p>
+                            <div class="brochure-actions">
+                                <button class="btn btn-view" data-bs-toggle="modal" data-bs-target="#brochureModal1">
+                                    <i class="fas fa-expand"></i> View Details
+                                </button>
+                                <button class="btn btn-download" onclick="downloadBrochure('sports-day')">
+                                    <i class="fas fa-download"></i> Download Brochure
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Brochure Card 2 -->
+                <div class="col-lg-6 mb-4">
+                    <div class="brochure-card" data-category="academic">
+                        <div class="brochure-image">
+                            <img src="./img2.jpg" alt="Science Fair 2024">
+                            <div class="brochure-badge">New</div>
+                        </div>
+                        <div class="brochure-content">
+                            <h3 class="brochure-title">Annual Science Fair 2024</h3>
+                            <div class="brochure-meta">
+                                <span><i class="fas fa-calendar-alt"></i> March 15, 2024</span>
+                                <span><i class="fas fa-map-marker-alt"></i> Science Lab & Auditorium</span>
+                            </div>
+                            <p class="brochure-description">
+                                Showcase your scientific innovations and experiments at our Annual Science Fair.
+                                Open for all grade levels.
+                            </p>
+                            <div class="brochure-actions">
+                                <button class="btn btn-view" data-bs-toggle="modal" data-bs-target="#brochureModal2">
+                                    <i class="fas fa-expand"></i> View Details
+                                </button>
+                                <button class="btn btn-download" onclick="downloadBrochure('science-fair')">
+                                    <i class="fas fa-download"></i> Download Brochure
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Brochure Card 3 -->
+                <div class="col-lg-6 mb-4">
+                    <div class="brochure-card" data-category="admission">
+                        <div class="brochure-image">
+                            <img src="./banner.jpg" alt="Admissions Open 2024-25">
+                            <div class="brochure-badge">Admission</div>
+                        </div>
+                        <div class="brochure-content">
+                            <h3 class="brochure-title">Admissions Open 2024-25</h3>
+                            <div class="brochure-meta">
+                                <span><i class="fas fa-calendar-alt"></i> Until March 31, 2024</span>
+                                <span><i class="fas fa-users"></i> All Grades</span>
+                            </div>
+                            <p class="brochure-description">
+                                Enroll now for the academic year 2024-25. Limited seats available.
+                                Early bird discounts until February 29th.
+                            </p>
+                            <div class="brochure-actions">
+                                <button class="btn btn-view" data-bs-toggle="modal" data-bs-target="#brochureModal3">
+                                    <i class="fas fa-expand"></i> View Details
+                                </button>
+                                <button class="btn btn-download" onclick="downloadBrochure('admission-guide')">
+                                    <i class="fas fa-download"></i> Prospectus
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Brochure Card 4 -->
+                <div class="col-lg-6 mb-4">
+                    <div class="brochure-card" data-category="arts">
+                        <div class="brochure-image">
+                            <img src="./img3.jpg" alt="Art Exhibition 2024">
+                            <div class="brochure-badge">Cultural</div>
+                        </div>
+                        <div class="brochure-content">
+                            <h3 class="brochure-title">Spring Art Exhibition 2024</h3>
+                            <div class="brochure-meta">
+                                <span><i class="fas fa-calendar-alt"></i> March 5-7, 2024</span>
+                                <span><i class="fas fa-map-marker-alt"></i> School Art Gallery</span>
+                            </div>
+                            <p class="brochure-description">
+                                Experience the creativity of our students through paintings, sculptures,
+                                digital art, and traditional crafts exhibition.
+                            </p>
+                            <div class="brochure-actions">
+                                <button class="btn btn-view" data-bs-toggle="modal" data-bs-target="#brochureModal4">
+                                    <i class="fas fa-expand"></i> View Details
+                                </button>
+                                <button class="btn btn-download" onclick="downloadBrochure('art-exhibition')">
+                                    <i class="fas fa-download"></i> Event Guide
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BROCHURE MODALS -->
+    <!-- Modal 1: Sports Day -->
+    <div class="modal fade brochure-modal" id="brochureModal1" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Annual Sports Day 2024 - Complete Details</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="brochure-modal-image">
+                        <img src="./admin.jpg" alt="Sports Day Details">
+                    </div>
+                    <div class="brochure-modal-content">
+                        <h4>Event Schedule</h4>
+                        <ul>
+                            <li><strong>8:00 AM:</strong> Opening Ceremony & March Past</li>
+                            <li><strong>9:00 AM:</strong> Track Events Begin</li>
+                            <li><strong>11:00 AM:</strong> Field Events</li>
+                            <li><strong>1:00 PM:</strong> Lunch Break</li>
+                            <li><strong>2:00 PM:</strong> Team Sports Finals</li>
+                            <li><strong>4:00 PM:</strong> Prize Distribution</li>
+                        </ul>
+
+                        <h4>Participation Guidelines</h4>
+                        <p>All students are encouraged to participate. Registration forms available with sports
+                            teachers.</p>
+
+                        <div class="text-center mt-4">
+                            <button class="btn btn-download" onclick="downloadBrochure('sports-day-full')">
+                                <i class="fas fa-download"></i> Download Complete Brochure
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2: Science Fair -->
+    <div class="modal fade brochure-modal" id="brochureModal2" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Annual Science Fair 2024 - Complete Details</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="brochure-modal-image">
+                        <img src="./img1.jpg" alt="Science Fair Details">
+                    </div>
+                    <div class="brochure-modal-content">
+                        <h4>Categories</h4>
+                        <ul>
+                            <li><strong>Physics:</strong> Mechanics, Electronics, Robotics</li>
+                            <li><strong>Chemistry:</strong> Reactions, Materials Science</li>
+                            <li><strong>Biology:</strong> Life Sciences, Ecology</li>
+                            <li><strong>Technology:</strong> AI, Software, Innovations</li>
+                        </ul>
+
+                        <h4>Registration Deadline</h4>
+                        <p>Submit your project proposals by March 1st, 2024. Winners will receive exciting prizes!</p>
+
+                        <div class="text-center mt-4">
+                            <button class="btn btn-download" onclick="downloadBrochure('science-fair-full')">
+                                <i class="fas fa-download"></i> Download Complete Brochure
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3: Admissions -->
+    <div class="modal fade brochure-modal" id="brochureModal3" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Admissions Open 2024-25 - Complete Details</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="brochure-modal-image">
+                        <img src="./banner.jpg" alt="Admissions Details">
+                    </div>
+                    <div class="brochure-modal-content">
+                        <h4>Admission Process</h4>
+                        <ul>
+                            <li><strong>Step 1:</strong> Download and fill admission form</li>
+                            <li><strong>Step 2:</strong> Submit required documents</li>
+                            <li><strong>Step 3:</strong> Attend entrance assessment</li>
+                            <li><strong>Step 4:</strong> Receive admission confirmation</li>
+                        </ul>
+
+                        <h4>Early Bird Offer</h4>
+                        <p>Register before February 29th and get 15% discount on admission fees!</p>
+
+                        <div class="text-center mt-4">
+                            <button class="btn btn-download" onclick="downloadBrochure('admission-full')">
+                                <i class="fas fa-download"></i> Download Prospectus
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 4: Art Exhibition -->
+    <div class="modal fade brochure-modal" id="brochureModal4" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Spring Art Exhibition 2024 - Complete Details</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="brochure-modal-image">
+                        <img src="./img5.jpg" alt="Art Exhibition Details">
+                    </div>
+                    <div class="brochure-modal-content">
+                        <h4>Exhibition Categories</h4>
+                        <ul>
+                            <li><strong>Painting:</strong> Oil, Watercolor, Acrylic</li>
+                            <li><strong>Sculpture:</strong> Clay, Wood, Mixed Media</li>
+                            <li><strong>Digital Art:</strong> Graphic Design, 3D Art</li>
+                            <li><strong>Traditional Crafts:</strong> Calligraphy, Pottery</li>
+                        </ul>
+
+                        <h4>Visitor Information</h4>
+                        <p>Exhibition open from 9 AM to 5 PM. Free entry for all students and parents.</p>
+
+                        <div class="text-center mt-4">
+                            <button class="btn btn-download" onclick="downloadBrochure('art-exhibition-full')">
+                                <i class="fas fa-download"></i> Download Event Guide
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5><img class="Logo" src="./logo.png" alt="AMFA Logo"> AL-MOMIN FUSION ACADEMY</h5>
+                    <p>"Your Kids Deserve The Best Education"</p>
+                    <p>Empowering young minds through holistic education, fostering academic excellence, creativity, and
+                        character development.</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Quick Links</h5>
+                    <p><a href="index.html">Home</a></p>
+                    <p><a href="index.html#course">Courses</a></p>
+                    <p><a href="announcements.html">Announcements</a></p>
+                    <p><a href="index.html#contact">Get in Touch</a></p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Contact Us</h5>
+                    <p><i class="fas fa-phone"></i> +92 3325522774 | 00971561349042</p>
+                    <p><i class="fas fa-envelope"></i> momin.fusion_academy@outlook.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Karachi-Muslim Abad Colony UC-2</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 AL-MOMIN FUSION ACADEMY. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BOOTSTRAP JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <!-- CUSTOM JAVASCRIPT -->
+    <script>
+        // ===== ANNOUNCEMENTS FILTERING AND SEARCH =====
+        document.addEventListener('DOMContentLoaded', function () {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const searchInput = document.getElementById('searchInput');
+            const announcements = document.querySelectorAll('.announcement-card');
+            const noResults = document.getElementById('noResults');
+
+            let activeFilter = 'all';
+            let searchTerm = '';
+
+            // Filter button click event
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    activeFilter = this.getAttribute('data-filter');
+                    filterAnnouncements();
+                });
+            });
+
+            // Search input event
+            searchInput.addEventListener('input', function () {
+                searchTerm = this.value.toLowerCase();
+                filterAnnouncements();
+            });
+
+            // Filter announcements function
+            function filterAnnouncements() {
+                let visibleCount = 0;
+
+                announcements.forEach(announcement => {
+                    const category = announcement.getAttribute('data-category');
+                    const title = announcement.querySelector('.announcement-title').textContent.toLowerCase();
+                    const content = announcement.querySelector('.announcement-content').textContent.toLowerCase();
+
+                    const matchesFilter = activeFilter === 'all' || category === activeFilter;
+                    const matchesSearch = searchTerm === '' || title.includes(searchTerm) || content.includes(searchTerm);
+
+                    if (matchesFilter && matchesSearch) {
+                        announcement.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        announcement.style.display = 'none';
+                    }
+                });
+
+                // Show/hide no results message
+                noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+            }
+
+            // Initialize
+            filterAnnouncements();
+        });
+
+
+        // ===== BROCHURE DOWNLOAD FUNCTIONALITY =====
+        function downloadBrochure(brochureType) {
+            const brochureImages = {
+                'sports-day': './admin.jpg',
+                'science-fair': './img2.jpg',
+                'admission-guide': './banner.jpg',
+                'art-exhibition': './img3.jpg',
+                'sports-day-full': './admin.jpg',
+                'science-fair-full': './img1.jpg',
+                'admission-full': './banner.jpg',
+                'art-exhibition-full': './img5.jpg'
+            };
+
+            const imageUrl = brochureImages[brochureType];
+
+            if (imageUrl) {
+                // Create a temporary anchor element to download the image
+                const link = document.createElement('a');
+                link.href = imageUrl;
+
+                // Extract filename from URL and set as download name
+                const filename = imageUrl.split('/').pop() || `${brochureType}.jpg`;
+                link.download = filename;
+
+                // Append to body, click, and remove
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                // Show success message
+                showNotification('Brochure image download started!', 'success');
+            } else {
+                showNotification('Brochure image not found!', 'error');
+            }
+        }
+
+        // ===== ENHANCED NOTIFICATION FUNCTION =====
+        function showNotification(message, type) {
+            // Remove any existing notifications first
+            const existingNotifications = document.querySelectorAll('.custom-notification');
+            existingNotifications.forEach(notification => notification.remove());
+
+            const notification = document.createElement('div');
+            notification.className = 'custom-notification';
+
+            const backgroundColor = type === 'success' ? '#27ae60' :
+                type === 'error' ? '#e74c3c' : '#f39c12';
+
+            notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${backgroundColor};
+        color: white;
+        padding: 15px 25px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        z-index: 9999;
+        font-weight: 600;
+        animation: slideIn 0.3s ease;
+        border-left: 4px solid ${type === 'success' ? '#2ecc71' :
+                    type === 'error' ? '#c0392b' : '#e67e22'};
+    `;
+
+            // Add icon based on type
+            const icon = type === 'success' ? '✅' :
+                type === 'error' ? '❌' : 'ℹ️';
+
+            notification.innerHTML = `
+        <span style="margin-right: 10px;">${icon}</span>
+        ${message}
+    `;
+
+            document.body.appendChild(notification);
+
+            // Auto remove after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.remove();
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // Add animation styles if not already present
+        if (!document.querySelector('#notification-styles')) {
+            const style = document.createElement('style');
+            style.id = 'notification-styles';
+            style.textContent = `
+        @keyframes slideIn {
+            from { transform: translateX(400px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(400px); opacity: 0; }
+        }
+        
+        /* Enhanced button hover effects */
+        .btn-download:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(245, 186, 44, 0.4);
+        }
+        
+        /* Loading state for download buttons */
+        .btn-download.loading {
+            position: relative;
+            color: transparent;
+        }
+        
+        .btn-download.loading::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            top: 50%;
+            left: 50%;
+            margin-left: -8px;
+            margin-top: -8px;
+            border: 2px solid transparent;
+            border-top: 2px solid var(--dark-brown);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    `;
+            document.head.appendChild(style);
+        }
+
+
+
+
+        // ===== PAGINATION FUNCTIONALITY =====
+        document.querySelectorAll('.page-link').forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelectorAll('.page-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+
+</html>

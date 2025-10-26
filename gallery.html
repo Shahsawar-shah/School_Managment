@@ -22,6 +22,7 @@
         * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         html {
@@ -33,6 +34,7 @@
             color: var(--dark-text);
             background-color: var(--light-cream);
             position: relative;
+            line-height: 1.6;
         }
 
         body::before {
@@ -51,11 +53,12 @@
             pointer-events: none;
         }
 
-        /* Navbar Styles */
+        /* ===== NAVBAR STYLES ===== */
         .navbar {
             background: linear-gradient(135deg, var(--dark-brown) 0%, var(--brown) 50%, var(--gold) 100%);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
             padding: 14px 0;
+            backdrop-filter: blur(10px);
         }
 
         .navbar-brand {
@@ -76,33 +79,73 @@
             border-radius: 6px;
         }
 
-        /* Gallery Hero Section */
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            margin: 0 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            padding: 8px 0 !important;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--gold) !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -8px;
+            left: 0;
+            background: linear-gradient(90deg, var(--gold), transparent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* ===== GALLERY HERO SECTION ===== */
         .gallery-hero {
             background: linear-gradient(135deg, var(--dark-brown) 0%, var(--brown) 35%, var(--gold) 100%);
             color: var(--white);
             padding: 100px 0 60px;
             text-align: center;
             margin-top: 60px;
+            position: relative;
+            overflow: hidden;
         }
 
         .gallery-hero h1 {
             font-size: 3rem;
             font-weight: 800;
             margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .gallery-hero p {
             font-size: 1.2rem;
             opacity: 0.95;
             font-weight: 500;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        /* Gallery Filter */
+        /* ===== GALLERY FILTER ===== */
         .gallery-filter {
             background: var(--white);
             padding: 30px 0;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            /* position: sticky;
+            top: 60px; */
+            z-index: 100;
         }
 
         .filter-buttons {
@@ -121,6 +164,7 @@
             font-weight: 700;
             transition: all 0.3s ease;
             cursor: pointer;
+            font-size: 0.95rem;
         }
 
         .filter-btn:hover,
@@ -131,74 +175,12 @@
             box-shadow: 0 5px 15px rgba(245, 186, 44, 0.3);
         }
 
-        /* Gallery Grid */
+        /* ===== GALLERY SECTION ===== */
         .gallery-section {
             padding: 80px 0;
             background: linear-gradient(180deg, var(--light-cream) 0%, rgba(245, 186, 44, 0.05) 100%);
         }
 
-        .gallery-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
-        }
-
-        .gallery-item {
-            position: relative;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            background: var(--white);
-            aspect-ratio: 4/3;
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .gallery-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: all 0.3s ease;
-        }
-
-        .gallery-item:hover .gallery-img {
-            transform: scale(1.1);
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-            color: white;
-            padding: 30px 20px 20px;
-            transform: translateY(100%);
-            transition: all 0.3s ease;
-        }
-
-        .gallery-item:hover .gallery-overlay {
-            transform: translateY(0);
-        }
-
-        .gallery-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .gallery-date {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-
-        /* Event Categories */
         .event-category {
             margin-bottom: 60px;
         }
@@ -225,7 +207,70 @@
             border-radius: 2px;
         }
 
-        /* Stats Section */
+        /* ===== GALLERY GRID ===== */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            background: var(--white);
+            aspect-ratio: 4/3;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 30px 20px 20px;
+            transform: translateY(100%);
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .gallery-date {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* ===== STATS SECTION ===== */
         .stats-section {
             background: linear-gradient(135deg, var(--dark-brown) 0%, var(--brown) 100%);
             color: var(--white);
@@ -234,7 +279,7 @@
         }
 
         .stat-item {
-            padding: 30px;
+            padding: 30px 20px;
         }
 
         .stat-number {
@@ -242,6 +287,7 @@
             font-weight: 800;
             color: var(--gold);
             margin-bottom: 10px;
+            line-height: 1;
         }
 
         .stat-label {
@@ -250,7 +296,7 @@
             opacity: 0.9;
         }
 
-        /* Video Gallery */
+        /* ===== VIDEO GALLERY ===== */
         .video-gallery {
             padding: 80px 0;
             background: var(--white);
@@ -264,6 +310,12 @@
             cursor: pointer;
             background: var(--dark-brown);
             aspect-ratio: 16/9;
+            transition: all 0.3s ease;
+        }
+
+        .video-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
         }
 
         .video-thumbnail {
@@ -301,7 +353,7 @@
             transform: translate(-50%, -50%) scale(1.1);
         }
 
-        /* Footer */
+        /* ===== FOOTER ===== */
         .footer {
             background: linear-gradient(135deg, var(--dark-brown) 0%, var(--brown) 50%, rgba(245, 186, 44, 0.9) 100%);
             color: var(--white);
@@ -309,11 +361,42 @@
             margin-top: 50px;
         }
 
-        /* Modal Styles */
+        .footer h5 {
+            font-weight: 800;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .footer p {
+            margin-bottom: 10px;
+            opacity: 0.95;
+        }
+
+        .footer a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--white);
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 20px;
+            opacity: 0.9;
+        }
+
+        /* ===== MODAL STYLES ===== */
         .gallery-modal .modal-content {
             border: none;
             border-radius: 15px;
             overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
 
         .gallery-modal .modal-header {
@@ -325,23 +408,66 @@
 
         .gallery-modal .modal-body {
             padding: 0;
+            background: #f8f9fa;
         }
 
         .modal-image {
             width: 100%;
             max-height: 70vh;
             object-fit: contain;
+            display: block;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
+        /* ===== LOGO & IMAGE STYLES ===== */
+        .Logo {
+            margin-top: 2px;
+            width: 40px;
+            height: 30px;
+            margin-right: 10px;
+            object-fit: contain;
+        }
+
+        .adminimage {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+
+        /* Tablet Devices */
+        @media (max-width: 992px) {
+            .gallery-container {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 20px;
+            }
+
             .gallery-hero h1 {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
+            }
+
+            .category-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Mobile Devices */
+        @media (max-width: 768px) {
+            .gallery-hero {
+                padding: 80px 0 40px;
+            }
+
+            .gallery-hero h1 {
+                font-size: 2rem;
+            }
+
+            .gallery-hero p {
+                font-size: 1.1rem;
             }
 
             .gallery-container {
                 grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 20px;
+                gap: 15px;
             }
 
             .filter-buttons {
@@ -353,27 +479,115 @@
                 font-size: 0.9rem;
             }
 
+            .category-title {
+                font-size: 1.8rem;
+            }
+
             .stat-number {
                 font-size: 2.5rem;
             }
+
+            .stat-item {
+                padding: 20px 15px;
+            }
+
+            .gallery-overlay {
+                padding: 20px 15px 15px;
+            }
+
+            .gallery-title {
+                font-size: 1.1rem;
+            }
         }
 
+        /* Small Mobile Devices */
         @media (max-width: 576px) {
             .gallery-hero {
-                padding: 80px 0 40px;
+                padding: 60px 0 30px;
             }
 
             .gallery-hero h1 {
                 font-size: 1.8rem;
             }
 
+            .gallery-section {
+                padding: 50px 0;
+            }
+
             .gallery-container {
                 grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .filter-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .filter-btn {
+                width: 200px;
+                text-align: center;
             }
 
             .category-title {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
+                margin-bottom: 20px;
             }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .stat-label {
+                font-size: 1rem;
+            }
+
+            .video-play-btn {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .footer {
+                padding: 30px 0 15px;
+            }
+        }
+
+        /* Large Screens */
+        @media (min-width: 1400px) {
+            .gallery-container {
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                gap: 30px;
+            }
+        }
+
+        /* Loading Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .gallery-img {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        /* Focus States for Accessibility */
+        .filter-btn:focus,
+        .gallery-item:focus {
+            outline: 3px solid var(--gold);
+            outline-offset: 2px;
+        }
+
+        /* Smooth Transitions */
+        .gallery-item,
+        .filter-btn,
+        .nav-link {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
     </style>
 </head>
@@ -383,7 +597,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-                <i class="fas fa-book-open"></i> AL MOMIN ACADEMY
+                <img class="Logo" src="./logo.png" alt="logoimage"> AL MOMIN ACADEMY
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -415,7 +629,7 @@
                 <button class="filter-btn" data-filter="academic">Academic</button>
                 <button class="filter-btn" data-filter="sports">Sports</button>
                 <button class="filter-btn" data-filter="cultural">Cultural</button>
-                <button class="filter-btn" data-filter="events">Special Events</button>
+
             </div>
         </div>
     </section>
@@ -428,7 +642,8 @@
                 <h2 class="category-title">Academic Excellence</h2>
                 <div class="gallery-container">
                     <!-- Gallery Item 1 -->
-                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal"
+                        data-image="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80">
                         <img src="./img2.jpg" alt="Science Lab" class="gallery-img">
                         <div class="gallery-overlay">
                             <h3 class="gallery-title">Science Laboratory</h3>
@@ -437,7 +652,8 @@
                     </div>
 
                     <!-- Gallery Item 2 -->
-                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal"
+                        data-image="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80">
                         <img src="./img4.jpg" alt="Library" class="gallery-img">
                         <div class="gallery-overlay">
                             <h3 class="gallery-title">School Library</h3>
@@ -446,7 +662,8 @@
                     </div>
 
                     <!-- Gallery Item 3 -->
-                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal"
+                        data-image="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80">
                         <img src="./img5.jpg" alt="Classroom" class="gallery-img">
                         <div class="gallery-overlay">
                             <h3 class="gallery-title">Smart Classroom</h3>
@@ -462,8 +679,10 @@
                 <h2 class="category-title">Sports & Athletics</h2>
                 <div class="gallery-container">
                     <!-- Add sports gallery items here -->
-                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80">
-                        <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Basketball" class="gallery-img">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal"
+                        data-image="https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80">
+                        <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                            alt="Basketball" class="gallery-img">
                         <div class="gallery-overlay">
                             <h3 class="gallery-title">Basketball Tournament</h3>
                             <p class="gallery-date">April 10, 2024</p>
@@ -477,8 +696,10 @@
                 <h2 class="category-title">Cultural Activities</h2>
                 <div class="gallery-container">
                     <!-- Add cultural gallery items here -->
-                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80">
-                        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Dance" class="gallery-img">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal"
+                        data-image="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80">
+                        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                            alt="Dance" class="gallery-img">
                         <div class="gallery-overlay">
                             <h3 class="gallery-title">Annual Day Dance</h3>
                             <p class="gallery-date">December 15, 2023</p>
@@ -526,8 +747,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-4">
-                    <h5><i class="fas fa-graduation-cap"></i> Academy School</h5>
-                    <p>Delivering quality education and shaping tomorrow's leaders with integrity, innovation, and excellence.</p>
+                    <h5><i class="fas fa-graduation-cap"></i> AL-MOMIN FUSION ACADEMY</h5>
+                    <p>"Your Kids Deserves The Best Education"</p>
+                    <p>Empowering young minds through holistic education, fostering academic excellence, creativity, and
+                        character development.</p>
                 </div>
                 <div class="col-md-4 mb-4">
                     <h5>Quick Links</h5>
@@ -538,13 +761,13 @@
                 </div>
                 <div class="col-md-4 mb-4">
                     <h5>Contact Information</h5>
-                    <p><i class="fas fa-phone"></i> +92 (300) 123-4567</p>
-                    <p><i class="fas fa-envelope"></i> info@academyschool.edu</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Karachi, Sindh, Pakistan</p>
+                    <p><i class="fas fa-phone"></i> +92 3325522774 | 00971561349042</p>
+                    <p><i class="fas fa-envelope"></i> momin.fusion_academy@outlook.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Karachi-Muslim Abad Colony UC-2</p>
                 </div>
             </div>
             <div class="footer-bottom text-center">
-                <p>&copy; 2024 Academy School. All rights reserved. | Designed for Excellence</p>
+                <p>&copy; 2024 AL-MOMIN FUSION ACADEMY. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -567,12 +790,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script>
         // Filter functionality
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const filterButtons = document.querySelectorAll('.filter-btn');
             const galleryCategories = document.querySelectorAll('.event-category');
 
             filterButtons.forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function () {
                     // Remove active class from all buttons
                     filterButtons.forEach(btn => btn.classList.remove('active'));
                     // Add active class to clicked button
@@ -593,7 +816,7 @@
             // Modal image setup
             const imageModal = document.getElementById('imageModal');
             if (imageModal) {
-                imageModal.addEventListener('show.bs.modal', function(event) {
+                imageModal.addEventListener('show.bs.modal', function (event) {
                     const button = event.relatedTarget;
                     const imageUrl = button.getAttribute('data-image');
                     const modalImage = document.getElementById('modalImage');
@@ -604,7 +827,7 @@
             // Add loading animation
             const images = document.querySelectorAll('.gallery-img');
             images.forEach(img => {
-                img.addEventListener('load', function() {
+                img.addEventListener('load', function () {
                     this.style.opacity = '1';
                 });
                 img.style.opacity = '0';
